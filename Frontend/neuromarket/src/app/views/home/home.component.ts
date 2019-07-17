@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import messages from './messages';
 import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.js';
 
 @Component({
@@ -8,16 +9,42 @@ import * as M from '../../../../node_modules/materialize-css/dist/js/materialize
 })
 export class HomeComponent implements OnInit {
 
+  welcomeMessage: String;
+  productsList: {}[]
+
   options = {
     fullWidth: true,
     indicators: true,
     duration: 300
   }
 
-  constructor() { }
+  constructor() {
+    this.welcomeMessage = messages.welcomeMessage;
+  }
 
   ngOnInit() {
     var elems = document.querySelectorAll('.carousel');
     var instances = M.Carousel.init(elems, this.options);
+    this.productsList = [
+      {
+        imagen: 'https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg',
+        title: 'Televisor Led 48"',
+        link: '$1.258.245',
+        desc:'Televisor full Hd con pantalla plana'
+      },
+      {
+        imagen: 'https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg',
+        title: 'test 2',
+        link: 'test 2',
+        desc:'test 2'
+      },
+      {
+        imagen: 'https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg',
+        title: 'test 3',
+        link: 'test 3',
+        desc:'test 3'
+      }
+    ]
   }
+
 }
