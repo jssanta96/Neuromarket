@@ -1,0 +1,10 @@
+#logo-navbar{
+  width: 5em;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+.nav-link{
+  color: black !important;
+  font-weight: bold;
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit } from '@angular/core';
 import messages from './messages';
 import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.js';
 
@@ -7,24 +7,26 @@ import * as M from '../../../../node_modules/materialize-css/dist/js/materialize
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements AfterViewInit {
 
-  welcomeMessage: String;
-  productsList: {}[]
+  slidesList: {}[];
+  productsList: {}[];
+  cardList: {}[];
 
   options = {
-    fullWidth: true,
-    indicators: true,
-    duration: 300
+    indicators: false,
+    interval: 4000
   }
 
   constructor() {
-    this.welcomeMessage = messages.welcomeMessage;
+    this.slidesList = messages.slides;
+    this.cardList = messages.cards;
   }
 
-  ngOnInit() {
-    var elems = document.querySelectorAll('.carousel');
-    var instances = M.Carousel.init(elems, this.options);
+  ngAfterViewInit() {
+    console.log(this.slidesList)
+    var elems = document.querySelectorAll('.slider');
+    var instances = M.Slider.init(elems, this.options);
     this.productsList = [
       {
         imagen: 'https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg',
@@ -37,6 +39,12 @@ export class HomeComponent implements OnInit {
         title: 'test 2',
         link: 'test 2',
         desc:'test 2'
+      },
+      {
+        imagen: 'https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg',
+        title: 'test 3',
+        link: 'test 3',
+        desc:'test 3'
       },
       {
         imagen: 'https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg',
