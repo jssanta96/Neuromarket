@@ -21,12 +21,6 @@ export class HomeComponent implements AfterViewInit {
   constructor() {
     this.slidesList = messages.slides;
     this.cardList = messages.cards;
-  }
-
-  ngAfterViewInit() {
-    console.log(this.slidesList)
-    var elems = document.querySelectorAll('.slider');
-    var instances = M.Slider.init(elems, this.options);
     this.productsList = [
       {
         imagen: 'https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg',
@@ -55,4 +49,8 @@ export class HomeComponent implements AfterViewInit {
     ]
   }
 
+  ngAfterViewInit() {
+    var elems = document.querySelectorAll('.slider');
+    var instances = M.Slider.init(elems, this.options);
+  }
 }
