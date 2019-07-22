@@ -1,6 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import messages from './messages';
-import * as M from '../../../../node_modules/materialize-css/dist/js/materialize.js';
+import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
 @Component({
   selector: 'app-home',

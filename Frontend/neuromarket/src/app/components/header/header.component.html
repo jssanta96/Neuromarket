@@ -1,10 +1,12 @@
 <nav>
   <div class="nav-wrapper grey lighten-2">
     <a href="#" class="brand-logo">
-      <img class="responsive-img" id="logo-navbar" src="../../../assets/layout/neuromaker-logo.png" title="shop-logo" alt="logo">
+      <img class="responsive-img" id="logo-navbar" src="assets/layout/neuromaker-logo.png" title="shop-logo" alt="logo">
     </a>
     <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <li *ngFor="let navLink of navLinkList"><a class="nav-link" href="{{navLink.url}}">{{navLink.text}}</a></li>
+      <li *ngFor="let navLink of navLinkList">
+        <a class="nav-link" [routerLink]="[navLink.url]" [routerLinkActive]="['active']">{{navLink.text}}</a>
+      </li>
     </ul>
   </div>
 </nav>

@@ -1,16 +1,20 @@
 export default {
   navLinks: [
     {
+      text: 'Home',
+      url: ''
+    },
+    {
       text: 'Categorías',
-      url: 'test'
+      url: '/category'
     },
     {
       text: 'Ofertas',
-      url: 'test'
+      url: '/offer'
     },
     {
       text: 'Iniciar sesión',
-      url: 'test'
+      url: '/login'
     }
   ]
 }
