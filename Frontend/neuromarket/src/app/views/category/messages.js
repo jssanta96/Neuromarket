@@ -3,13 +3,35 @@ export default {
   categories: [
     {
       name: 'Tecnología',
-      icon: 'filter_drama',
+      icon: 'computer',
       categoryItem: [
         { itemName: 'Computadores' },
-        { itemName: 'videojuegos' },
-        { itemName: 'celulares' },
+        { itemName: 'Videojuegos' },
+        { itemName: 'Celulares' },
         { itemName: 'Tabletas' },
         { itemName: 'Consolas' }
+      ]
+    },
+    {
+      name: 'Hogar',
+      icon: 'home',
+      categoryItem: [
+        { itemName: 'Electrodomesticos' },
+        { itemName: 'Camas' },
+        { itemName: 'Salas' },
+        { itemName: 'Comedores' },
+        { itemName: 'Decoraciones' }
+      ]
+    },
+    {
+      name: 'Mascotas',
+      icon: 'pets',
+      categoryItem: [
+        { itemName: 'Alimento' },
+        { itemName: 'Ropa' },
+        { itemName: 'Juguetes' },
+        { itemName: 'Golosinas' },
+        { itemName: 'Correas' }
       ]
     }
   ]

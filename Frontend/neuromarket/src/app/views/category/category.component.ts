@@ -17,7 +17,7 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     accordion: true
   }
 
-  constructor() { 
+  constructor() {
     this.title = messages.title;
     this.categoriesList = messages.categories;
   }
@@ -29,5 +29,9 @@ export class CategoryComponent implements OnInit, AfterViewInit {
     var elems = document.querySelectorAll('.collapsible');
     var instances = M.Collapsible.init(elems, this.options);
   }
+
+  searchCat(name:String) {
+    console.log(name);
+  };
 
 }

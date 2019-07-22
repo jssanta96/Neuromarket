@@ -1,6 +1,6 @@
 <app-layout>
   <div main-content class="grey lighten-5">
-    <h1>{{title}}</h1>
+    <h1 id="title">{{title}}</h1>
     <div class="container">
       <ul class="collapsible">
         <li *ngFor="let category of categoriesList">
@@ -10,9 +10,8 @@
           </div>
           <div class="collapsible-body">
             <div class="row">
-              <div class="col s4">
-                <a>{{category.categoryItem.itemName}}</a>
-                <br>
+              <div class="col s4" *ngFor="let categoryItem of category.categoryItem">
+                <a (click)="searchCat(categoryItem.itemName)">{{categoryItem.itemName}}</a>
               </div>
             </div>
           </div>
