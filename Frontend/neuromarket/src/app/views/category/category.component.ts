@@ -12,9 +12,9 @@ import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 export class CategoryComponent implements OnInit, AfterViewInit {
 
   title: String;
-  categoriesList: {}[]
-  options = {
-    accordion: true
+  categoriesList: object;
+  options : object = {
+    accordion: false
   }
 
   constructor() {

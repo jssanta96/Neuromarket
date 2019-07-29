@@ -2,7 +2,11 @@ export default {
   navLinks: [
     {
       text: 'Home',
-      url: ''
+      url: '/home'
+    },
+    {
+    text: 'Productos',
+    url: '/product'
     },
     {
       text: 'Categorías',
