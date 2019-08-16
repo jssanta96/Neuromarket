@@ -5,3 +5,11 @@
 .row-no-margin{
   margin-bottom: 0px;
 }
+
+#search-bar{
+  margin-top: 30px;
+}
+
+#product-card{
+  cursor:pointer
+}

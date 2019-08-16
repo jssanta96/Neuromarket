@@ -1,7 +1,7 @@
 <app-layout>
   <div main-content class="grey lighten-5">
     <div class="row">
-      <nav class="col s4 offset-s4">
+      <nav id="search-bar" class="col s4 offset-s4">
         <div class="nav-wrapper">
           <form>
             <div class="input-field">
@@ -13,25 +13,23 @@
         </div>
       </nav>
     </div>
-    <div class="row container">
+    <div class="row row-no-margin">
       <div class="col s3">
-        <div class="card-panel teal">
-          <span class="white-text">I am a very simple card. I am good at containing small bits of information.
-          I am convenient because I require little markup to use effectively. I am similar to what is called a panel in other frameworks.
-          </span>
-        </div>
+        <app-category></app-category>
       </div>
-      <div class="col s9">
-        <ul class="collection hoverable">
+      <div class="col s7">
+        <ul routerLink="/product-detail" id="product-card" class="collection hoverable">
           <li class="collection-item item-no-padding">
             <div class="row row-no-margin">
               <div class="col s3">
-                <img class="responsive-img" src="https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg">
+                <img class="responsive-img"
+                  src="https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg">
               </div>
               <div class="col s9">
                 <h4>Televisor Led 48" full HD</h4>
                 <h5>$1'200.000</h5>
                 <h6>20 vendidos</h6>
+                <span class="new badge green" data-badge-caption="50% de descuento!"></span>
               </div>
             </div>
           </li>
@@ -40,12 +38,14 @@
           <li class="collection-item item-no-padding">
             <div class="row row-no-margin">
               <div class="col s3">
-                <img class="responsive-img" src="https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg">
+                <img class="responsive-img"
+                  src="https://www.abcdin.cl/wcsstore/ABCDIN/images/televisores-led/1122691F13.jpg">
               </div>
               <div class="col s9">
                 <h4>Televisor Led 48" full HD</h4>
                 <h5>$1'200.000</h5>
                 <h6>20 vendidos</h6>
+                <span class="new badge green" data-badge-caption="50% de descuento!"></span>
               </div>
             </div>
           </li>
