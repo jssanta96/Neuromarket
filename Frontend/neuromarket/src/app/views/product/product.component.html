@@ -17,7 +17,7 @@
       <div class="col s3">
         <app-category></app-category>
       </div>
-      <div class="col s7">
+      <div class="col s6">
         <ul routerLink="/product-detail" id="product-card" class="collection hoverable">
           <li class="collection-item item-no-padding">
             <div class="row row-no-margin">
@@ -30,6 +30,8 @@
                 <h5>$1'200.000</h5>
                 <h6>20 vendidos</h6>
                 <span class="new badge green" data-badge-caption="50% de descuento!"></span>
+                <br>
+                <span>Tecnología - Televisores</span>
               </div>
             </div>
           </li>
@@ -50,6 +52,46 @@
             </div>
           </li>
         </ul>
+      </div>
+      <div class="col s3">
+          <h5>Filtrar productos</h5>
+        <form action="#">
+          <h6>En promoción</h6>
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Descuento</span>
+            </label>
+          </p>
+          <div class="divider"></div>
+          <h6>Estado</h6>
+          <div class="row row-no-margin">
+            <div class="col s6">
+              <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Nuevo</span>
+                </label>
+              </p>
+            </div>
+            <div class="col s6">
+              <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Usado</span>
+                </label>
+              </p>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="row row-no-margin">
+            <div class="col s12">
+              <h6>Fecha de publicación</h6>
+              <input type="text" class="datepicker">
+            </div>
+          </div>
+        </form>
+        <a class="waves-effect waves-light btn right">Aplicar filtros</a>
       </div>
     </div>
   </div>

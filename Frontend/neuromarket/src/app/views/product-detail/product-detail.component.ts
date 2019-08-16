@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DetailedPeerCertificate } from 'tls';
+import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
 @Component({
   selector: 'app-product-detail',
@@ -11,5 +11,10 @@ export class ProductDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    var elems = document.querySelectorAll('.materialboxed');
+    M.Materialbox.init(elems);
+
+    var elemsSelect = document.querySelectorAll('select');
+    M.FormSelect.init(elemsSelect);
   }
 }
