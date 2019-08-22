@@ -23,11 +23,4 @@ class ListSubCategorias(APIView):
         subCategorias_json = subCategoriaSerializer(subCategorias,many=True)
         return Response(subCategorias_json.data)
 
-class DetailCategoria(APIView):
-    def get(self,request,pk):
-        try:
-            categoria = Categoria.objects.get(pk=pk)
-            categoria_json = categoriaSerializer(categoria)
-            return Response(categoria_json.data)
-        except Categoria.DoesNotExist:
-            raise Http404
+

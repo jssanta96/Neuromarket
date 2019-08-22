@@ -1,7 +1,7 @@
 from django.db import models
 from neuromarket.apps.categorias.models import SubCategoria
 from neuromarket.apps.tiendas.models import Tienda
-
+import json
 class Producto(models.Model):
     """Modelo de un producto"""
     nombre = models.CharField(max_length = 100)
@@ -9,14 +9,18 @@ class Producto(models.Model):
     costo = models.PositiveIntegerField()
     stock = models.PositiveIntegerField()
     condicion = models.BooleanField(default=True)
-    subcategoria = models.ForeignKey(SubCategoria, on_delete= models.CASCADE)
+    subcategoria = models.ForeignKey(SubCategoria,related_name='Producto', on_delete= models.CASCADE)
     tienda = models.ForeignKey(Tienda, on_delete=models.CASCADE)
     estado = models.BooleanField(default=True)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_modificacion = models.DateTimeField(auto_now=True)
 
     def __str__(self):
-        return self.nombre
+        response_data = {}
+        response_data['id'] = self.id
+        response_data['name'] = self.nombre
+        
+        return json.dumps(response_data)
 
 
 class ImagenProducto(models.Model):

@@ -17,6 +17,15 @@ class Listproductos(APIView):
         productos = Producto.objects.all()
         productos_json = lstProductosSerializer(productos,many=True,context={"request": request})
         return Response(productos_json.data)
+        
+    def post(self,request):
+        pass
+    
+    def put(self,request,pk):
+        pass
+
+    def delete(self,request,pk):
+        pass
 
 
 class ListProductosDestacados(APIView):

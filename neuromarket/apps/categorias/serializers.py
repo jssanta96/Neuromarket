@@ -1,17 +1,22 @@
 from rest_framework import serializers
 from .models import Categoria,SubCategoria
+import json
 
-class categoriaSerializer(serializers.ModelSerializer):    
+class categoriaSerializer(serializers.ModelSerializer):   
+    subcategoria = serializers.StringRelatedField(many=True)
+   
     class Meta:
         model= Categoria
         fields = ['id','nombre','subcategoria']
-        depth = 1
         
 
+
+   
+
         
-class subCategoriaSerializer(serializers.Serializer):
-    categoria = categoriaSerializer()
+class subCategoriaSerializer(serializers.ModelSerializer):
+    Producto = serializers.StringRelatedField(many=True)
 
     class Meta:
         model = SubCategoria
-        fields = ('id','categoria','nombre','descripcion')
+        fields = ('id','nombre','Producto')
