@@ -92,9 +92,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'neuromarket',
-        'USER': 'jsanta',
-        'PASSWORD': 'losmejores123',
-        'HOST': 'localhost',
+        'USER': 'oliver',
+        'PASSWORD': 'daniel261516',
         'PORT': '5432',
     }
 }

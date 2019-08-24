@@ -26,9 +26,10 @@ router.register(r'movies', views.MovieViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^',include(router.urls)),
-    path('productos/',include(('neuromarket.apps.productos.urls','productos'),namespace='productos')),
-    path('api-auth',include('rest_framework.urls',namespace='rest_framework')),
-    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,})
+    url(r'^', include(router.urls)),
+    path('productos/', include(('neuromarket.apps.productos.urls', 'productos'), namespace='productos')),
+    path('ventas/', include(('neuromarket.apps.ventas.urls', 'ventas'), namespace='ventas')),
+    path('api-auth', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, })
 
 ]
