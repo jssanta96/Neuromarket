@@ -17,35 +17,35 @@
       <div class="col s3">
         <h5>Elegir categoría</h5>
         <ul class="collapsible">
-          <li *ngFor="let category of categoriesList">
+          <li *ngFor="let category of categoryList">
             <div class="collapsible-header">
-              <i class="material-icons">{{category.icon}}</i>
-              {{category.name}}
+              <i class="material-icons">{{category.icono}}</i>
+              {{category.nombre}}
             </div>
             <div class="collapsible-body">
               <div class="row">
-                <div class="col s6" *ngFor="let categoryItem of category.categoryItem">
-                  <a (click)="searchCat(categoryItem.itemName)">{{categoryItem.itemName}}</a>
+                <div class="col s6" *ngFor="let categoryItem of category.subcategoria">
+                  <a>{{categoryItem.nombre}}</a>
                 </div>
               </div>
             </div>
           </li>
         </ul>
       </div>
-      <div class="col s6" *ngFor="let product of producList">
-        <ul routerLink="/product-detail" id="product-card" class="collection hoverable">
+      <div class="col s6">
+        <ul routerLink="/product-detail" class="collection hoverable product-card" *ngFor="let product of producList; let i = index">
           <li class="collection-item item-no-padding">
             <div class="row row-no-margin">
               <div class="col s3">
                 <img class="responsive-img" src="{{product.ImagenProducto[0].imagen}}">
               </div>
               <div class="col s9">
-                <span class="new badge green" data-badge-caption="50% de descuento!"></span>
+                <span *ngIf="producList[i].descuento != null" class="new badge green" data-badge-caption="">{{product.descuento}}% de descuento! </span>
                 <h4>{{product.nombre}}</h4>
                 <h5>$ {{product.costo}}</h5>
                 <h6>{{product.stock}} disponibles</h6>
                 <br>
-                <span>{{product.subcategoria.nombre}}</span>
+                <span>{{product.subcategoria.categoria.nombre}} - {{product.subcategoria.nombre}}</span>
               </div>
             </div>
           </li>

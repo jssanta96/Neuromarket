@@ -24,8 +24,17 @@ export class ProductListComponent implements OnInit {
    *
    * @type { object }
    */
-  options : object =  {
-    maxDate: new Date()
+  optionsDatePicker : object =  {
+    accordion: false,
+  }
+
+  /**
+   * Variable for the collapsible options
+   *
+   * @type { object }
+   */
+  optionsCollapsible : object =  {
+    maxDate: new Date(),
   }
 
   /**
@@ -54,6 +63,7 @@ export class ProductListComponent implements OnInit {
 
   ngOnInit() {
     this.initializeDatePicker();
+    this.initializeCollapsible();
     this.getProducts();
     this.getCategories();
   }
@@ -63,7 +73,15 @@ export class ProductListComponent implements OnInit {
    */
   initializeDatePicker(): void{
     var elems = document.querySelectorAll('.datepicker');
-    M.Datepicker.init(elems, this.options);
+    M.Datepicker.init(elems, this.optionsDatePicker);
+  }
+
+  /**
+   * Initialize the materialize datePicker
+   */
+  initializeCollapsible(): void{
+    var elems = document.querySelectorAll('.collapsible');
+    M.Collapsible.init(elems, this.optionsCollapsible);
   }
 
   /**
