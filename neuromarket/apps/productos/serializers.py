@@ -7,7 +7,7 @@ class categoriaXProductoSerializer(serializers.ModelSerializer):
     """Datos de Categoria para el json de productos """
     class Meta:
         model = Categoria
-        fields   = ['id','nombre']
+        fields   = ['id','icono','nombre']
 class tiendaXProductoSerializer(serializers.ModelSerializer):
     """Datos de a tienda para el json de productos """
     class Meta:
