@@ -24,6 +24,7 @@ class Producto(models.Model):
 
 
 class ImagenProducto(models.Model):
+    """Modelo Imagen Producto"""
     nombre = models.CharField(max_length = 100)
     imagen = models.ImageField(
         upload_to='productos/img',
@@ -39,6 +40,7 @@ class ImagenProducto(models.Model):
         
 
 class DescuentoXVolumen(models.Model):
+    """Modelo descuento por volumen sobre un producto"""
     producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     porcentajeDescuento = models.PositiveIntegerField()
@@ -48,4 +50,3 @@ class DescuentoXVolumen(models.Model):
     def __str__(self):
         return str(self.producto.nombre) + ":" + str(self.porcentajeDescuento) +"%"
     
-# Create your models here.

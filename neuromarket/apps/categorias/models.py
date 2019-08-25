@@ -13,6 +13,7 @@ class Categoria(models.Model):
         return self.nombre
 
 class SubCategoria(models.Model):
+    icono = models.CharField(max_length=200,blank=True)
     nombre = models.CharField(max_length=100)
     categoria = models.ForeignKey(Categoria, related_name='subcategoria' , on_delete=models.CASCADE)
     estado = models.BooleanField(default=True)
@@ -22,4 +23,4 @@ class SubCategoria(models.Model):
         response_data = {}
         response_data['id'] = self.id
         response_data['name'] = self.nombre
-        return json.dumps(response_data)
+        return str(response_data)

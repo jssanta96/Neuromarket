@@ -1,31 +1,39 @@
 from rest_framework import serializers
 from .models import Producto,ImagenProducto
+from neuromarket.apps.categorias.models import SubCategoria
+from neuromarket.apps.tiendas.models import Tienda
 
-
-class lstProductosSerializer(serializers.ModelSerializer):
+class tiendaXProductoSerializer(serializers.ModelSerializer):
+    """Datos de a tienda para el json de productos """
     class Meta:
-        model = Producto
+        model = Tienda
         fields = ['id','nombre']
 
-class productoSerializer(serializers.ModelSerializer):
-    ImagenProducto = serializers.StringRelatedField(many=True)
+class subCategoriaProductoSerializer(serializers.ModelSerializer):
+    """Datos de a subCategoria para el json de productos """
     class Meta:
-        model= Producto
-        fields = ['id','nombre','descripcion','ImagenProducto','condicion','subcategoria','tienda','fecha_creacion']
-        depth = 2
+        model = SubCategoria
+        fields = ['id','nombre']
+
+
+
 
 class imagenProductoSerializer(serializers.ModelSerializer):
+    """Datos de la(s) imagenes para el json de productos """
    
     class Meta:
-        imagen = serializers.HyperlinkedModelSerializer() 
-        model= ImagenProducto
-        fields = ['id','nombre','imagen','producto']
-        depth = 3
-
-    def get_imagen_url(self, ImagenProducto):
-        request = self.context.get('request')
-        imagen = ImagenProducto.imagen.url
-        return request.build_absolute_uri(imagen)
        
+        model= ImagenProducto
+        fields = ['id','nombre','imagen']
+     
+        
 
-   
+class productoSerializer(serializers.ModelSerializer):
+    """json productos """
+    ImagenProducto = imagenProductoSerializer(many=True, read_only=True )
+    subcategoria = subCategoriaProductoSerializer(read_only=True)
+    tienda = tiendaXProductoSerializer(read_only = True)
+    class Meta:
+        model= Producto
+        fields = '__all__'
+        
