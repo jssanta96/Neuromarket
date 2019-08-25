@@ -6,7 +6,7 @@ export default {
     },
     {
     text: 'Productos',
-    url: '/product'
+    url: '/product-list'
     },
     {
       text: 'Iniciar sesión',
