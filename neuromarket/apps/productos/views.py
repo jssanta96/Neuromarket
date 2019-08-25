@@ -66,7 +66,7 @@ class DetailProducto(APIView):
     def get(self,request,pk):
         try:
             producto = Producto.objects.get(pk=pk)
-            producto_json = productoSerializer(producto)
+            producto_json = productoSerializer(producto,context={"request": request})
             return Response(producto_json.data)
         except Producto.DoesNotExist:
             raise Http404
