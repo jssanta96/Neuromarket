@@ -61,6 +61,9 @@ export class ProductListComponent implements OnInit {
     private categoryService: CategoryService,
   ) {}
 
+  /**
+   * Callback on init component.
+   */
   ngOnInit() {
     this.initializeDatePicker();
     this.initializeCollapsible();
@@ -71,7 +74,7 @@ export class ProductListComponent implements OnInit {
   /**
    * Initialize the materialize datePicker
    */
-  initializeDatePicker(): void{
+  initializeDatePicker(): void {
     var elems = document.querySelectorAll('.datepicker');
     M.Datepicker.init(elems, this.optionsDatePicker);
   }
@@ -79,7 +82,7 @@ export class ProductListComponent implements OnInit {
   /**
    * Initialize the materialize datePicker
    */
-  initializeCollapsible(): void{
+  initializeCollapsible(): void {
     var elems = document.querySelectorAll('.collapsible');
     M.Collapsible.init(elems, this.optionsCollapsible);
   }
@@ -87,11 +90,10 @@ export class ProductListComponent implements OnInit {
   /**
    * get the product list.
    */
-  getProducts(): void{
+  getProducts(): void {
     this.productService.getProducts().subscribe(
       data => {
         this.producList = data;
-        console.log(this.producList);
       },
       error => {
         console.log(error);
@@ -102,11 +104,10 @@ export class ProductListComponent implements OnInit {
   /**
    * get the category list.
    */
-  getCategories(): void{
+  getCategories(): void {
     this.categoryService.getCategories().subscribe(
       data => {
         this.categoryList = data;
-        console.log(this.categoryList);
       },
       error => {
         console.log(error);
