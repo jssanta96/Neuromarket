@@ -20,7 +20,7 @@ class Factura(models.Model):
 
 
 class Venta(models.Model):
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    producto = models.ManyToManyField(Producto)
     factura = models.ForeignKey(Factura, on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     precio = models.PositiveIntegerField()
