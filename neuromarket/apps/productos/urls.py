@@ -5,10 +5,11 @@ from rest_framework import routers
 from django.conf import settings
 from django.views.static import serve
 
-from .views import ListProductosDestacados,ListImagenProducto,Listproductos,DetailProducto
+from .views import FilterProducto,ListProductosDestacados,ListImagenProducto,Listproductos,DetailProducto
 
 urlpatterns = [
     path('', Listproductos.as_view(), name="listar-productos"),
+    path('search',FilterProducto.as_view() , name="filtro-productos"),
     path('<int:pk>', DetailProducto.as_view(), name="listar-producto-detalle"),
     path('destacados/', ListProductosDestacados.as_view(), name="listar-productosDestacados"),
     path('img/', ListImagenProducto.as_view(), name="listar-imgproductos"),

@@ -91,10 +91,10 @@ WSGI_APPLICATION = 'neuromarket.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'neuromarket',
-        'USER': 'jsanta',
-        'PASSWORD': 'losmejores123',
-        'HOST': 'localhost',
+        'NAME': 'dd4d1l2ublejoe',
+        'USER': 'vrmvfnxvytohlv',
+        'PASSWORD': '989264aeba602d5744d79381a67797bf3979501c4c7bc689abb245d60a14a3e3',
+        'HOST': 'ec2-23-21-156-171.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
