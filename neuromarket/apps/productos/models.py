@@ -8,7 +8,7 @@ class Producto(models.Model):
     descripcion = models.CharField(max_length = 300)
     costo = models.PositiveIntegerField()
     stock = models.PositiveIntegerField()
-    descuento = models.PositiveIntegerField(blank=True,null=True)
+    descuento = models.PositiveIntegerField(default = 0)
     condicion = models.BooleanField(default=True)
     subcategoria = models.ForeignKey(SubCategoria,related_name='Producto', on_delete= models.CASCADE)
     tienda = models.ForeignKey(Tienda, on_delete=models.CASCADE)
