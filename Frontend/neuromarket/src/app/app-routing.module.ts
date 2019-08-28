@@ -10,7 +10,7 @@ import { ProductDetailComponent } from './views/product-detail/product-detail.co
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'product-detail', component: ProductDetailComponent, },
+  { path: 'product-detail/:id', component: ProductDetailComponent, },
   { path: 'offer', component: OfferComponent },
   { path: 'product-list', component: ProductListComponent },
   { path: 'login', component: LoginComponent }

@@ -24,7 +24,7 @@ export class ProductListComponent implements OnInit {
    *
    * @type { object }
    */
-  optionsDatePicker : object =  {
+  optionsDatePicker: object = {
     accordion: false,
   }
 
@@ -33,7 +33,7 @@ export class ProductListComponent implements OnInit {
    *
    * @type { object }
    */
-  optionsCollapsible : object =  {
+  optionsCollapsible: object = {
     maxDate: new Date(),
   }
 
@@ -42,14 +42,18 @@ export class ProductListComponent implements OnInit {
    *
    * @type { Array<object> }
    */
-  producList : any;
+  producList: any;
 
   /**
    * Variable for store the categories list
    *
    * @type { Array<object> }
    */
-  categoryList : any;
+  categoryList: any;
+
+  discountFlag = false;
+  newFlag = false;
+  usedFlag = false;
 
   /**
    * Creates an instance of OrderComponent.
@@ -59,7 +63,7 @@ export class ProductListComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
-  ) {}
+  ) { }
 
   /**
    * Callback on init component.
@@ -108,6 +112,20 @@ export class ProductListComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       data => {
         this.categoryList = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  /**
+   * get the product list.
+   */
+  getProductsfiltered(): void {
+    this.productService.getProductsFiltered(this.discountFlag, this.newFlag, this.usedFlag).subscribe(
+      data => {
+        this.producList = data;
       },
       error => {
         console.log(error);
