@@ -137,6 +137,12 @@ class FilterProducto(APIView):
         except Producto.DoesNotExist:
             return Http404
             
-            
+class SearchProducto(APIView):
+    def post(self,request):
+        data = request.data
+        producto = Producto.objects.filter(nombre__contains=data['campo'])
+        producto_json = productoSerializer(instance=producto,many=True,context={"request": request})
+        return Response(producto_json.data)
+
             
         
