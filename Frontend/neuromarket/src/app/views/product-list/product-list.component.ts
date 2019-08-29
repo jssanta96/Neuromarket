@@ -132,7 +132,6 @@ export class ProductListComponent implements OnInit {
    * get the product list.
    */
   getProductsfiltered(): void {
-    console.log(this.selectFlag)
     this.productService.getProductsFiltered(this.discountFlag, this.selectFlag).subscribe(
       data => {
         this.producList = data;

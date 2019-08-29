@@ -17,6 +17,10 @@
       <div class="col s3">
         <h5>Elegir categoría</h5>
         <ul class="collapsible">
+          <div class="collapsible-header" (click)="getProducts()" name="all">
+            <i class="material-icons">border_all</i>
+            Todas las categorías
+          </div>
           <li *ngFor="let category of categoryList">
             <div class="collapsible-header">
               <i class="material-icons">{{category.icono}}</i>
@@ -45,12 +49,13 @@
                 <h4 class="product-name">{{product.nombre}}</h4>
                 <span *ngIf="producList[i].condicion">Producto nuevo</span>
                 <span *ngIf="!producList[i].condicion">Producto usado</span>
-                <strong><h6 class="before-text" *ngIf="producList[i].descuento != 0">Antes $<s>{{product.costo}} </s></h6></strong>
+                <strong>
+                  <h6 class="before-text" *ngIf="producList[i].descuento != 0">Antes $<s>{{product.costo}} </s></h6>
+                </strong>
                 <h5 *ngIf="producList[i].descuento === 0">$ {{product.costo}} </h5>
-                <h5 class="after-text" *ngIf="producList[i].descuento != 0">Ahora $ {{product.costo - ((product.descuento/100) * product.costo)}} </h5>
+                <h5 class="after-text" *ngIf="producList[i].descuento != 0">Ahora
+                  ${{product.costo - ((product.descuento/100) * product.costo)}} </h5>
                 <h6>{{product.stock}} disponibles</h6>
-                <br>
-                <span>{{product.subcategoria.categoria.nombre}} - {{product.subcategoria.nombre}}</span>
               </div>
             </div>
           </li>
