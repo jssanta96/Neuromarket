@@ -45,7 +45,9 @@
                 <h4 class="product-name">{{product.nombre}}</h4>
                 <span *ngIf="producList[i].condicion">Producto nuevo</span>
                 <span *ngIf="!producList[i].condicion">Producto usado</span>
-                <h5>$ {{product.costo}}</h5>
+                <strong><h6 class="before-text" *ngIf="producList[i].descuento != 0">Antes $<s>{{product.costo}} </s></h6></strong>
+                <h5 *ngIf="producList[i].descuento === 0">$ {{product.costo}} </h5>
+                <h5 class="after-text" *ngIf="producList[i].descuento != 0">Ahora $ {{product.costo - ((product.descuento/100) * product.costo)}} </h5>
                 <h6>{{product.stock}} disponibles</h6>
                 <br>
                 <span>{{product.subcategoria.categoria.nombre}} - {{product.subcategoria.nombre}}</span>

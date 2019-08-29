@@ -52,7 +52,7 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the produc list filtered.
    */
   public getProductsFiltered(discount:boolean, state: boolean): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/productos/search`,{
+    return this.httpClient.post(`${this.apiURL}/productos/filtrar`,{
       descuento: discount,
       estado: state,
     });
