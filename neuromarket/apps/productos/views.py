@@ -140,7 +140,7 @@ class FilterProducto(APIView):
 class SearchProducto(APIView):
     def post(self,request):
         data = request.data
-        producto = Producto.objects.filter(nombre__contains=data['campo'])
+        producto = Producto.objects.filter(nombre__icontains=data['campo'])
         producto_json = productoSerializer(instance=producto,many=True,context={"request": request})
         return Response(producto_json.data)
 

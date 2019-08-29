@@ -10,6 +10,6 @@ from .views import ListCategorias,ListSubCategorias,FilterCategoria
 urlpatterns = [
     path('', ListCategorias.as_view(), name="listar-categorias"),
     path('subcategorias/', ListSubCategorias.as_view(), name="listar-subcategorias"),
-    path('search',FilterCategoria.as_view() , name="filtro-subcategorias"),
+    path('filtrar',FilterCategoria.as_view() , name="filtro-subcategorias"),
     
 ]
