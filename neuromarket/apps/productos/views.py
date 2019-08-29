@@ -104,7 +104,7 @@ class FilterProducto(APIView):
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
             
-            if(data['estado'] == None and data['descuento'] == True):
+            if(data['estado'] == None and data['descuento'] == False):
                 productos = Producto.objects.filter(descuento=0)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
