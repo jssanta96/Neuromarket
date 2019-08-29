@@ -24,4 +24,11 @@ class ListSubCategorias(APIView):
         subCategorias_json = subCategoriaSerializer(instance=subCategorias,many=True)
         return Response(subCategorias_json.data)
 
+class FilterCategoria(APIView):
+    def post(self,request):
+        data = request.data
+        subCategorias = SubCategoria.objects.filter(nombre__contains=data['campo'])
+        subCategorias_json = subCategoriaSerializer(instance=subCategorias,many=True,context={"request": request})
+        return Response(subCategorias_json.data)
+
 
