@@ -51,9 +51,9 @@ export class ProductListComponent implements OnInit {
    */
   categoryList: any;
 
-  discountFlag = false;
-  newFlag = false;
-  usedFlag = false;
+  discountFlag = null;
+
+  selectFlag = null;
 
   /**
    * Creates an instance of OrderComponent.
@@ -73,6 +73,7 @@ export class ProductListComponent implements OnInit {
     this.initializeCollapsible();
     this.getProducts();
     this.getCategories();
+    this.initializeSelect();
   }
 
   /**
@@ -89,6 +90,14 @@ export class ProductListComponent implements OnInit {
   initializeCollapsible(): void {
     var elems = document.querySelectorAll('.collapsible');
     M.Collapsible.init(elems, this.optionsCollapsible);
+  }
+
+  /**
+   * Initialize the materialize select
+   */
+  initializeSelect(): void {
+    var elemsSelect = document.querySelectorAll('select');
+    M.FormSelect.init(elemsSelect);
   }
 
   /**
@@ -123,7 +132,8 @@ export class ProductListComponent implements OnInit {
    * get the product list.
    */
   getProductsfiltered(): void {
-    this.productService.getProductsFiltered(this.discountFlag, this.newFlag, this.usedFlag).subscribe(
+    console.log(this.selectFlag)
+    this.productService.getProductsFiltered(this.discountFlag, this.selectFlag).subscribe(
       data => {
         this.producList = data;
       },

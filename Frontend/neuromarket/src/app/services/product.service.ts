@@ -47,16 +47,14 @@ export class ProductService {
    * Gets the product list filtered
    * 
    * @param { boolean } discount The state of the discount
-   * @param { boolean } packaged If the product is new
-   * @param { boolean } used If the product is used
+   * @param { boolean } state the state of the product
    *
    * @returns { Observable<any> } an observable with the produc list filtered.
    */
-  public getProductsFiltered(discount:boolean, packaged: boolean, used: boolean): Observable<any> {
+  public getProductsFiltered(discount:boolean, state: boolean): Observable<any> {
     return this.httpClient.post(`${this.apiURL}/productos/search`,{
       descuento: discount,
-      nuevo: packaged,
-      usado: used
+      estado: state,
     });
   }
 }

@@ -40,7 +40,8 @@
                 <img class="responsive-img" src="{{product.ImagenProducto[0].imagen}}">
               </div>
               <div class="col s9">
-                <span *ngIf="producList[i].descuento != 0" class="new badge green" data-badge-caption="">{{product.descuento}}% de descuento! </span>
+                <span *ngIf="producList[i].descuento != 0" class="new badge green"
+                  data-badge-caption="">{{product.descuento}}% de descuento! </span>
                 <h4 class="product-name">{{product.nombre}}</h4>
                 <span *ngIf="producList[i].condicion">Producto nuevo</span>
                 <span *ngIf="!producList[i].condicion">Producto usado</span>
@@ -56,38 +57,24 @@
       <div class="col s3">
         <h5>Filtrar productos</h5>
         <form action="#">
-          <h6>En promoción</h6>
-          <p>
-            <label>
-              <input type="checkbox" [(ngModel)]="discountFlag" name="discount" (change)="getProductsfiltered()"/>
-              <span>Descuento</span>
-            </label>
-          </p>
-          <div class="divider"></div>
-          <h6>Estado</h6>
-          <div class="row row-no-margin">
-            <div class="col s6">
-              <p>
-                <label>
-                  <input type="checkbox" [(ngModel)]="newFlag" name="new" (change)="getProductsfiltered()"/>
-                  <span>Nuevo</span>
-                </label>
-              </p>
-            </div>
-            <div class="col s6">
-              <p>
-                <label>
-                  <input type="checkbox" [(ngModel)]="usedFlag" name="used" (change)="getProductsfiltered()"/>
-                  <span>Usado</span>
-                </label>
-              </p>
-            </div>
-          </div>
-          <div class="divider"></div>
+          <h6>Promoción</h6>
           <div class="row row-no-margin">
             <div class="col s12">
-              <h6>Fecha de publicación</h6>
-              <input type="text" class="datepicker">
+              <select [(ngModel)]="discountFlag" name="select" (change)="getProductsfiltered()">
+                <option [ngValue]=null> Todos </option>
+                <option [ngValue]=true> Con Descuento </option>
+                <option [ngValue]=false> Sin descuento </option>
+              </select>
+            </div>
+          </div>
+          <h6>Estado</h6>
+          <div class="row row-no-margin">
+            <div class="col s12">
+              <select [(ngModel)]="selectFlag" name="select" (change)="getProductsfiltered()">
+                <option [ngValue]=null> Todos </option>
+                <option [ngValue]=true> Nuevos </option>
+                <option [ngValue]=false> Usados </option>
+              </select>
             </div>
           </div>
         </form>
