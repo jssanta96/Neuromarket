@@ -88,12 +88,13 @@ class FilterProducto(APIView):
 
     def post(self,request):
         data = request.data
+
         try:
             if(data['estado'] == True and data['descuento'] == None):
                 productos = Producto.objects.filter(condicion = True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
-            if(data['estado'] == True and data['descuento'] == None):
+            if(data['estado'] == False and data['descuento'] == None):
                 productos = Producto.objects.filter(condicion = False)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
@@ -109,7 +110,7 @@ class FilterProducto(APIView):
                 return Response(productos_json.data)
             
             if(data['estado'] == True and data['descuento'] == True):
-                productos = Producto.objects.filter(descuento__gt=0,condicion=True)
+                productos = Producto.objects.filter(descuento__gt=1,condicion=True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
 
