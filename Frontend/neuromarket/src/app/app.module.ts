@@ -13,6 +13,12 @@ import { OfferComponent } from './views/offer/offer.component';
 import { LoginComponent } from './views/login/login.component';
 import { ProductComponent } from './views/product/product.component';
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { UserComponent } from './components/user/user.component';
 
 @NgModule({
   declarations: [
@@ -25,15 +31,18 @@ import { ProductDetailComponent } from './views/product-detail/product-detail.co
     OfferComponent,
     LoginComponent,
     ProductComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService,UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

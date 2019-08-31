@@ -7,6 +7,9 @@
       <li *ngFor="let navLink of navLinkList">
         <a class="nav-link" [routerLink]="[navLink.url]" [routerLinkActive]="'activeLink'">{{navLink.text}}</a>
       </li>
+      <li>
+        <user-component></user-component>
+      </li>
     </ul>
   </div>
 </nav>

@@ -1,15 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { AuthService } from '../../services/auth.service'
+import { Router, Params } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'page-login',
+  templateUrl: 'login.component.html',
+  styleUrls: ['login.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
-  constructor() { }
+  loginForm: FormGroup;
+  errorMessage: string = '';
 
-  ngOnInit() {
+  constructor(
+    public authService: AuthService,
+    private router: Router
+  ) { }
+
+  tryFacebookLogin(){
+    this.authService.doFacebookLogin();
   }
 
+  tryGoogleLogin(){
+    this.authService.doGoogleLogin();
+  }
 }
