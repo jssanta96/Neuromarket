@@ -1,21 +1,20 @@
-<footer class="page-footer grey">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 id="footer-title" class="white-text">{{footerTitle}}</h5>
-        <p id="footer-description" class="grey-text text-lighten-4">{{footerDescription}}</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <h5 id="footer-link-title" class="white-text">{{footerLinkTitle}}</h5>
-        <ul>
-          <li *ngFor="let linkFooter of footerLinkList"><a id="footer-link" class="grey-text text-lighten-3" href="{{linkFooter.url}}">{{linkFooter.text}}</a></li>
-        </ul>
-      </div>
+<div class="container">
+  <div class="row">
+    <div class="col l6 s12">
+      <h5 id="footer-title" class="white-text">{{footerTitle}}</h5>
+      <p id="footer-description" class="grey-text text-lighten-4">{{footerDescription}}</p>
+    </div>
+    <div class="col l4 offset-l2 s12">
+      <h5 id="footer-link-title" class="white-text">{{footerLinkTitle}}</h5>
+      <ul>
+        <li *ngFor="let linkFooter of footerLinkList"><a id="footer-link" class="grey-text text-lighten-3"
+            href="{{linkFooter.url}}">{{linkFooter.text}}</a></li>
+      </ul>
     </div>
   </div>
-  <div class="footer-copyright">
-    <div id="footer-copyright-text" class="container">
+</div>
+<div class="footer-copyright">
+  <div id="footer-copyright-text" class="container">
     {{copyright}}
-    </div>
   </div>
-</footer>
+</div>

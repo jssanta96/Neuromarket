@@ -8,11 +8,15 @@ import { LayoutComponent } from './components/layout/layout.component';
 import { HomeComponent } from './views/home/home.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { OfferComponent } from './views/offer/offer.component';
 import { LoginComponent } from './views/login/login.component';
 import { ProductListComponent } from './views/product-list/product-list.component';
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
 import { LoaderComponent } from './components/loader/loader.component';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AuthService } from './services/auth.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -21,19 +25,21 @@ import { LoaderComponent } from './components/loader/loader.component';
     HomeComponent,
     HeaderComponent,
     FooterComponent,
-    OfferComponent,
     LoginComponent,
     ProductListComponent,
     ProductDetailComponent,
-    LoaderComponent
+    LoaderComponent,
   ],
   imports: [
     BrowserModule,
+    FontAwesomeModule,
     HttpClientModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
