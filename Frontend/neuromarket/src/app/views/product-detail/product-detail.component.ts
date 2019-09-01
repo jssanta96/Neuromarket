@@ -51,6 +51,7 @@ export class ProductDetailComponent implements OnInit {
   initializeMaterialboxed(): void {
     var elems = document.querySelectorAll('.materialboxed');
     M.Materialbox.init(elems);
+    
   }
 
   /**

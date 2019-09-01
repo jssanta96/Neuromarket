@@ -20,8 +20,14 @@
       <div class="col s6">
         <div class="card-panel grey lighten-5 hoverable">
           <span *ngIf="productDetail.descuento != 0" class="new badge green" data-badge-caption="">{{productDetail.descuento}}% de descuento! </span>
-          <h4>{{productDetail.costo}}</h4>
-          <div class="row">
+          <span *ngIf="productDetail.condicion">Producto nuevo</span>
+          <span *ngIf="!productDetail.condicion">Producto usado</span>
+          <strong>
+            <h6 class="before-text" *ngIf="productDetail.descuento != 0">Antes $<s>{{productDetail.costo}} </s></h6>
+          </strong>
+          <h5 *ngIf="productDetail.descuento === 0">$ {{productDetail.costo}} </h5>
+          <h5 class="after-text" *ngIf="productDetail.descuento != 0">Ahora
+            ${{productDetail.costo - ((productDetail.descuento/100) * productDetail.costo)}} </h5>          <div class="row">
             <div class="input-field">
               <div class="col s9">
                 <select>
