@@ -8,8 +8,8 @@ from datetime import datetime
 from rest_framework.decorators import api_view
 from datetime import timedelta
 
-from .models import Producto, ImagenProducto
-from .serializers import productoSerializer, imagenProductoSerializer, lstProductosSerializer
+from .models import Producto, ImagenProducto, DescuentoXVolumen
+from .serializers import productoSerializer, imagenProductoSerializer, lstProductosSerializer, cuponDescuentoSrializer
 from django.http import Http404
 
 
@@ -70,3 +70,8 @@ def producto_detail(request, pk):
     elif request.method == 'DELETE':
         Producto.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class listDescuento(generics.ListCreateAPIView):
+    queryset = DescuentoXVolumen.objects.all()
+    serializer_class = cuponDescuentoSrializer

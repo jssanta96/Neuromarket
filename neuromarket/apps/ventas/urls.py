@@ -13,6 +13,8 @@ urlpatterns = [
     path('<int:pk>', DetailVentas.as_view(), name="listar-ventas-detalle"),
     path('', facturaList.as_view(), name="listar-facturas"),
     path('<int:pk>', DetailFactura.as_view(), name="listar-ventas-detalle"),
+    path('factura/',facturaList.as_view(), name="listar-las-facturas" ),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT, }),
+
 
 ]

@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Producto, ImagenProducto
+from .models import Producto, ImagenProducto, DescuentoXVolumen
 
 
 class lstProductosSerializer(serializers.ModelSerializer):
@@ -32,3 +32,12 @@ class imagenProductoSerializer(serializers.ModelSerializer):
         request = self.context.get('request')
         imagen = ImagenProducto.imagen.url
         return request.build_absolute_uri(imagen)
+
+
+class cuponDescuentoSrializer(serializers.ModelSerializer):
+    class Meta:
+        model = DescuentoXVolumen
+        fields = ['producto', 'cantidad', 'porcentajeDescuento', 'estado', 'fecha_creacion'
+
+                  ]
+        depth = 2
