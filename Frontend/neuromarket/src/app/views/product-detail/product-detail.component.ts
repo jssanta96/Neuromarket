@@ -1,5 +1,5 @@
 // Dependencies
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentChecked } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
@@ -17,14 +17,21 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-detail.component.css']
 })
 
-export class ProductDetailComponent implements OnInit {
+export class ProductDetailComponent implements OnInit, AfterContentChecked {
 
   /**
    * Variable for store the product list
    *
-   * @type { Array<object> }
+   * @type { Object }
    */
-  productDetail: Array<any>;
+  productDetail: any;
+
+  /**
+   * Variable for the stock
+   *
+   * @type { Array<number> }
+   */
+  stockArray: Array<number>;
 
   /**
    * Creates an instance of ProductDetailComponent.
@@ -40,9 +47,13 @@ export class ProductDetailComponent implements OnInit {
    * Callback on init component.
    */
   ngOnInit() {
-    this.initializeMaterialboxed();
-    this.initializeSelect();
     this.getProductDetail();
+    this.initializeMaterialboxed();
+  }
+  
+  ngAfterContentChecked(){
+    this.initializeSelect();
+
   }
 
   /**

@@ -32,6 +32,7 @@ export class AuthService {
 
   // Returns true when user is looged in and email is verified
   isLoggedIn(): boolean {
+    console.log('is login '+ JSON.parse(localStorage.getItem('user')))
     const user = JSON.parse(localStorage.getItem('user'));
     return (user !== null) ? true : false;
   }
@@ -55,6 +56,7 @@ export class AuthService {
 
   getUserData() {
     if (this.userData) {
+      console.log('si hay data')
       return JSON.parse(localStorage.getItem('user'));
     }
   }

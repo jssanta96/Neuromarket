@@ -18,24 +18,31 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit() {
     this.verifyLogin();
-    this.getUserData();
     this.initializeSideNav();
   }
 
   verifyLogin() {
     this.isLoggedIn = this.authService.isLoggedIn();
-    console.log(this.isLoggedIn)
+    console.log('logeado? ' + this.isLoggedIn)
+    if(this.isLoggedIn){
+      this.getUserData();
+    }
   }
 
   getUserData(){
     console.log('entra')
-    this.userData = this.authService.getUserData();
+    this.userData = JSON.parse(localStorage.getItem('user'))
     console.log(this.userData)
   }
 
   initializeSideNav(){
     var elems = document.querySelectorAll('.sidenav');
     M.Sidenav.init(elems, {edge:'left'});
+  }
+
+  signOut(){
+    this.authService.SignOut();
+    window.location.reload();
   }
 
 }

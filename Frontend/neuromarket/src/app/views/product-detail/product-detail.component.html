@@ -1,5 +1,5 @@
 <app-layout>
-  <div main-content class="grey lighten-5">
+  <div  *ngIf="productDetail !== undefined" main-content class="grey lighten-5">
     <div class="row">
       <nav>
         <div class="nav-wrapper">
@@ -32,9 +32,9 @@
               <div class="col s9">
                 <select>
                   <option value="" disabled selected>Cantidad de unidades</option>
-                  <option value="1"> 1 </option>
-                  <option value="2"> 2 </option>
-                  <option value="3"> 3 </option>
+                  <option value="" disabled selected>cosa</option>
+                  <option value="" disabled selected>cosa</option>
+                  <option value="" disabled selected>cosa</option>
                 </select>
               </div>
               <div class="col s3">
