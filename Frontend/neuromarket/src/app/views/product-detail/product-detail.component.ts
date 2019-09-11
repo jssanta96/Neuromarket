@@ -5,7 +5,6 @@ import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
 // Services
 import { ProductService } from '../../services/product.service';
-import { ConcatSource } from 'webpack-sources';
 
 /**
  * @author Diego Bello
@@ -66,7 +65,6 @@ export class ProductDetailComponent implements OnInit {
   initializeMaterialboxed(): void {
     var elems = document.querySelectorAll('.materialboxed');
     M.Materialbox.init(elems);
-    
   }
 
   /**
@@ -97,7 +95,6 @@ export class ProductDetailComponent implements OnInit {
 
   cart(){
     var item = {
-      
     }
     //console.log(localStorage.getItem('user'))
     localStorage.setItem('cart', this.productID.toString());

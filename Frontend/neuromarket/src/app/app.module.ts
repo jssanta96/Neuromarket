@@ -19,6 +19,8 @@ import { AuthService } from './services/auth.service';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { StoreComponent } from './views/store/store.component';
 import { CartComponent } from './views/cart/cart.component';
+import { PurchaseListComponent } from './views/purchase-list/purchase-list.component';
+import { PurchaseDetailComponent } from './views/purchase-detail/purchase-detail.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,8 @@ import { CartComponent } from './views/cart/cart.component';
     LoaderComponent,
     StoreComponent,
     CartComponent,
+    PurchaseListComponent,
+    PurchaseDetailComponent,
   ],
   imports: [
     BrowserModule,

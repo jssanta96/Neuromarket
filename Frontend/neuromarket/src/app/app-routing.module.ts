@@ -6,14 +6,18 @@ import { ProductListComponent } from './views/product-list/product-list.componen
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
 import { StoreComponent } from './views/store/store.component';
 import { CartComponent } from './views/cart/cart.component';
+import { PurchaseListComponent } from './views/purchase-list/purchase-list.component';
+import { PurchaseDetailComponent } from './views/purchase-detail/purchase-detail.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent, },
+  { path: 'purchase-detail/:id', component: PurchaseDetailComponent, },
   { path: 'product-list', component: ProductListComponent },
   { path: 'cart', component: CartComponent },
   { path: 'store', component: StoreComponent },
+  { path: 'purchase', component: PurchaseListComponent },
   { path: 'login', component: LoginComponent }
 
 ];

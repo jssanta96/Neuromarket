@@ -1,6 +1,6 @@
 // Dependencies
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 /**
@@ -35,9 +35,9 @@ export class ProductService {
   }
 
   /**
-   * Gets the product list
+   * Gets the specific product
    *
-   * @returns { Observable<any> } an observable with the produc list.
+   * @returns { Observable<any> } an observable with the specific product
    */
   public getProductDetail(id: number): Observable<any> {
     return this.httpClient.get(`${this.apiURL}/productos/${id}`);
