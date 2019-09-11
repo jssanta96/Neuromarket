@@ -29,6 +29,7 @@ urlpatterns = [
     url(r'^',include(router.urls)),
     path('productos/',include(('neuromarket.apps.productos.urls','productos'),namespace='productos')),
     path('categorias/',include(('neuromarket.apps.categorias.urls','categorias'),namespace='categorias')),
+    path('compras/',include(('neuromarket.apps.ventas.urls','compras'),namespace='compras')),
     path('api-auth',include('rest_framework.urls',namespace='rest_framework')),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,})
 
