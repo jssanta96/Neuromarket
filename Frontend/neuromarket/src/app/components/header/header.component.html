@@ -19,6 +19,7 @@
             <a class="nav-link" routerLink="/product-list" [routerLinkActive]="'activeLink'">Productos</a>
           </li>
           <li>
+            <a class="nav-link" routerLink="/cart" [routerLinkActive]="'activeLink'">Carrito <span class="new badge blue" data-badge-caption="">4</span></a>
           </li>
         </ul>
       </div>
@@ -32,12 +33,12 @@
       <div class="background">
         <img src="assets/images/background.jpeg">
       </div>
-      <a href="#user"><img class="circle" src="{{userData.photoURL || assets/images/background.jpeg}}"></a>
-      <a href="#name"><span class="white-text name">{{userData.displayName}}</span></a>
-      <a href="#email"><span class="white-text email">{{userData.email}}</span></a>
+      <a><img class="circle" src="{{userData.photoURL || assets/images/background.jpeg}}"></a>
+      <a><span class="white-text name">{{userData.displayName}}</span></a>
+      <a><span class="white-text email">{{userData.email}}</span></a>
     </div>
   </li>
-  <li><a href="#!"><i class="material-icons">store</i>Tienda</a></li>
+  <li><a routerLink="/store" class="sidenav-close"><i class="material-icons">store</i>Tienda</a></li>
   <li><a href="#!"><i class="material-icons">shopping_cart</i>Compras</a></li>
   <li><a href="#!"><i class="material-icons">monetization_on</i>Ventas</a></li>
   <li><a href="#!"><i class="material-icons">show_chart</i>Reportes</a></li>
@@ -45,5 +46,5 @@
     <div class="divider"></div>
   </li>
   <li><a class="subheader">Opciones</a></li>
-  <li><a class="waves-effect" (click)="signOut()">Cerrar sesión</a></li>
+  <li><a class="waves-effect sidenav-close" (click)="signOut()">Cerrar sesión</a></li>
 </ul>

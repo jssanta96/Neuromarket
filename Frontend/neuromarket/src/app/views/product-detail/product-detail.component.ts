@@ -1,10 +1,11 @@
 // Dependencies
-import { Component, OnInit, AfterContentChecked } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
 // Services
 import { ProductService } from '../../services/product.service';
+import { ConcatSource } from 'webpack-sources';
 
 /**
  * @author Diego Bello
@@ -17,7 +18,7 @@ import { ProductService } from '../../services/product.service';
   styleUrls: ['./product-detail.component.css']
 })
 
-export class ProductDetailComponent implements OnInit, AfterContentChecked {
+export class ProductDetailComponent implements OnInit {
 
   /**
    * Variable for store the product list
@@ -25,6 +26,13 @@ export class ProductDetailComponent implements OnInit, AfterContentChecked {
    * @type { Object }
    */
   productDetail: any;
+
+  /**
+   * Variable for store the product ID
+   *
+   * @type { number }
+   */
+  productID: number;
 
   /**
    * Variable for the stock
@@ -49,11 +57,7 @@ export class ProductDetailComponent implements OnInit, AfterContentChecked {
   ngOnInit() {
     this.getProductDetail();
     this.initializeMaterialboxed();
-  }
-  
-  ngAfterContentChecked(){
     this.initializeSelect();
-
   }
 
   /**
@@ -77,11 +81,10 @@ export class ProductDetailComponent implements OnInit, AfterContentChecked {
    * get the product detail.
    */
   getProductDetail(): void {
-    var id: number
     this.activatedRoute.params.subscribe(params => {
-      id = params['id'];
+      this.productID = params['id'];
     });
-    this.productService.getProductDetail(id).subscribe(
+    this.productService.getProductDetail(this.productID).subscribe(
       data => {
         this.productDetail = data;
         console.log(this.productDetail)
@@ -90,5 +93,14 @@ export class ProductDetailComponent implements OnInit, AfterContentChecked {
         console.log(error);
       }
     );
+  }
+
+  cart(){
+    var item = {
+      
+    }
+    //console.log(localStorage.getItem('user'))
+    localStorage.setItem('cart', this.productID.toString());
+
   }
 }

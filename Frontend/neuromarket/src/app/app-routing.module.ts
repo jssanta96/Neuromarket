@@ -4,13 +4,16 @@ import { HomeComponent } from './views/home/home.component';
 import { LoginComponent } from './views/login/login.component';
 import { ProductListComponent } from './views/product-list/product-list.component';
 import { ProductDetailComponent } from './views/product-detail/product-detail.component';
-
+import { StoreComponent } from './views/store/store.component';
+import { CartComponent } from './views/cart/cart.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'product-detail/:id', component: ProductDetailComponent, },
   { path: 'product-list', component: ProductListComponent },
+  { path: 'cart', component: CartComponent },
+  { path: 'store', component: StoreComponent },
   { path: 'login', component: LoginComponent }
 
 ];

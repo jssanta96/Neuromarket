@@ -1,5 +1,5 @@
 <app-layout>
-  <div  *ngIf="productDetail !== undefined" main-content class="grey lighten-5">
+  <div main-content class="grey lighten-5">
     <div class="row">
       <nav>
         <div class="nav-wrapper">
@@ -14,12 +14,12 @@
     </div>
     <div class="row container">
       <div class="col s6">
-        <img class="materialboxed responsive-img" width="400"
-          src="{{productDetail.ImagenProducto[0].imagen}}">
+        <img class="materialboxed responsive-img" width="400" src="{{productDetail.ImagenProducto[0].imagen}}">
       </div>
       <div class="col s6">
         <div class="card-panel grey lighten-5 hoverable">
-          <span *ngIf="productDetail.descuento != 0" class="new badge green" data-badge-caption="">{{productDetail.descuento}}% de descuento! </span>
+          <span *ngIf="productDetail.descuento != 0" class="new badge green"
+            data-badge-caption="">{{productDetail.descuento}}% de descuento! </span>
           <span *ngIf="productDetail.condicion">Producto nuevo</span>
           <span *ngIf="!productDetail.condicion">Producto usado</span>
           <strong>
@@ -27,7 +27,8 @@
           </strong>
           <h5 *ngIf="productDetail.descuento === 0">$ {{productDetail.costo}} </h5>
           <h5 class="after-text" *ngIf="productDetail.descuento != 0">Ahora
-            ${{productDetail.costo - ((productDetail.descuento/100) * productDetail.costo)}} </h5>          <div class="row">
+            ${{productDetail.costo - ((productDetail.descuento/100) * productDetail.costo)}} </h5>
+          <div class="row">
             <div class="input-field">
               <div class="col s9">
                 <select>
@@ -42,7 +43,7 @@
               </div>
             </div>
           </div>
-          <a class="waves-effect waves-light btn right">Añadir al carrito</a>
+          <a onclick="M.toast({html: 'Agregado al carrito'})" (click)="cart()" class="btn right">Añadir al carrito</a>
         </div>
       </div>
     </div>

@@ -37,12 +37,11 @@ export class HeaderComponent implements OnInit {
 
   initializeSideNav(){
     var elems = document.querySelectorAll('.sidenav');
-    M.Sidenav.init(elems, {edge:'left'});
+    M.Sidenav.init(elems, {edge:'right'});
   }
 
   signOut(){
     this.authService.SignOut();
-    window.location.reload();
   }
 
 }
