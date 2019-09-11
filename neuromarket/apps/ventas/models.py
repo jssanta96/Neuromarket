@@ -21,6 +21,7 @@ class Factura(models.Model):
 class Venta(models.Model):
     producto = models.ForeignKey(Producto,on_delete=models.CASCADE)
     factura = models.ForeignKey(Factura,on_delete=models.CASCADE)
+    fecha = models.DateTimeField(auto_now=True)
     cantidad = models.PositiveIntegerField()
     precio = models.PositiveIntegerField()
     total = models.PositiveIntegerField()
