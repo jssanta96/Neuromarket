@@ -4,7 +4,7 @@ class Usuario(models.Model):
     codigo = models.CharField(max_length=250)
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
-    correo = models.EmailField()
+    correo = models.EmailField(unique=True)
     estado = models.BooleanField(default=True)
 
     def __str__(self):

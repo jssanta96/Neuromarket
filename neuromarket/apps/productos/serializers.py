@@ -42,4 +42,12 @@ class productoSerializer(serializers.ModelSerializer):
     class Meta:
         model= Producto
         fields = '__all__'
+
+class productoxComprasSerializer(serializers.ModelSerializer):
+    """json productos """
+    ImagenProducto = imagenProductoSerializer(many=True, read_only=True )
+    
+    class Meta:
+        model= Producto
+        fields = ['nombre','ImagenProducto']
         
