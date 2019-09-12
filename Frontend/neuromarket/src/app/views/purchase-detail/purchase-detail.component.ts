@@ -1,7 +1,6 @@
 // Dependencies
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
 // Services
 import { PurchaseService } from '../../services/purchase.service';

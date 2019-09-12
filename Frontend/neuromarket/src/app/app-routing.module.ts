@@ -8,6 +8,7 @@ import { StoreComponent } from './views/store/store.component';
 import { CartComponent } from './views/cart/cart.component';
 import { PurchaseListComponent } from './views/purchase-list/purchase-list.component';
 import { PurchaseDetailComponent } from './views/purchase-detail/purchase-detail.component';
+import { SaleListComponent } from './views/sale-list/sale-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'store', component: StoreComponent },
   { path: 'purchase', component: PurchaseListComponent },
+  { path: 'sale', component: SaleListComponent },
   { path: 'login', component: LoginComponent }
 
 ];
