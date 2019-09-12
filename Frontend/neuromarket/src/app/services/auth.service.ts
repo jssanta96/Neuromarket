@@ -3,18 +3,23 @@ import { User } from "../models/user.model";
 import { auth } from 'firebase/app';
 import { AngularFireAuth } from "@angular/fire/auth";
 import { Router } from "@angular/router";
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  apiURL: string = 'http://127.0.0.1:8000'
+
   userData: any;
 
   constructor(
     public afAuth: AngularFireAuth,
     public router: Router,
-    public ngZone: NgZone
+    public ngZone: NgZone,
+    public httpClient: HttpClient
   ) {
     /* Saving user data in localstorage when 
     logged in and setting up null when logged out */
@@ -23,6 +28,7 @@ export class AuthService {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
+        this.saveUser('test12', 'tse5')
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
@@ -48,7 +54,7 @@ export class AuthService {
         this.ngZone.run(() => {
           this.router.navigate(['/']);
         })
-        this.SetUserData(result.user);
+        this.SetUserData(result.user.email);
       }).catch((error) => {
         window.alert(error)
       })
@@ -82,4 +88,18 @@ provider in Firestore database using AngularFirestore + AngularFirestoreDocument
     })
   }
 
+  public saveUser(email:string, name: string): Observable<any> {
+    console.log('entra a save con' + email + name)
+    return this.httpClient.post(`${this.apiURL}/usuarios/`,{
+      nombre: name,
+      correo: email,
+    });
+  }
+
+  public getProductsFiltered(discount:boolean, state: boolean): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/productos/filtrar`,{
+      descuento: discount,
+      estado: state,
+    });
+  }
 }
