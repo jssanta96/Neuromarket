@@ -28,7 +28,6 @@ export class AuthService {
         this.userData = user;
         localStorage.setItem('user', JSON.stringify(this.userData));
         JSON.parse(localStorage.getItem('user'));
-        this.saveUser('test12', 'tse5')
       } else {
         localStorage.setItem('user', null);
         JSON.parse(localStorage.getItem('user'));
@@ -86,14 +85,6 @@ provider in Firestore database using AngularFirestore + AngularFirestoreDocument
       localStorage.removeItem('user');
       this.router.navigate(['/']);
     })
-  }
-
-  public saveUser(email:string, name: string): Observable<any> {
-    console.log('entra a save con' + email + name)
-    return this.httpClient.post(`${this.apiURL}/usuarios/`,{
-      nombre: name,
-      correo: email,
-    });
   }
 
   public getProductsFiltered(discount:boolean, state: boolean): Observable<any> {

@@ -1,5 +1,5 @@
 <app-layout>
-  <div main-content class="grey lighten-5">
+  <div *ngIf="productDetail !== undefined" main-content class="grey lighten-5">
     <div class="row">
       <nav>
         <div class="nav-wrapper">
@@ -14,7 +14,7 @@
     </div>
     <div class="row container">
       <div class="col s6">
-        <img class="materialboxed responsive-img" width="400" src="{{productDetail.ImagenProducto[0].imagen}}">
+        <img class="responsive-img" width="400" src="{{productDetail.ImagenProducto[0].imagen}}">
       </div>
       <div class="col s6">
         <div class="card-panel grey lighten-5 hoverable">
@@ -31,11 +31,9 @@
           <div class="row">
             <div class="input-field">
               <div class="col s9">
-                <select>
+                <select class="browser-default">
                   <option value="" disabled selected>Cantidad de unidades</option>
-                  <option value="" disabled selected>cosa</option>
-                  <option value="" disabled selected>cosa</option>
-                  <option value="" disabled selected>cosa</option>
+                  <option *ngFor="let number of stockArray" value="{{number+1}}">{{number+1}}</option>
                 </select>
               </div>
               <div class="col s3">
@@ -47,7 +45,7 @@
         </div>
       </div>
     </div>
-    <div class="row" style="margin-bottom: 0px;">
+    <div class="row" style="margin-bottom: 20px;">
       <div class="col s6">
         <h4>Descripción</h4>
         <p style="text-align: justify">{{productDetail.descripcion}}</p>

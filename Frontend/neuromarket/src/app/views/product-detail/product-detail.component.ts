@@ -56,23 +56,14 @@ export class ProductDetailComponent implements OnInit {
   ngOnInit() {
     this.getProductDetail();
     this.initializeMaterialboxed();
-    this.initializeSelect();
   }
-
+  
   /**
    * Initialize the materialize materialboxed
    */
   initializeMaterialboxed(): void {
     var elems = document.querySelectorAll('.materialboxed');
     M.Materialbox.init(elems);
-  }
-
-  /**
-   * Initialize the materialize select
-   */
-  initializeSelect(): void {
-    var elemsSelect = document.querySelectorAll('select');
-    M.FormSelect.init(elemsSelect);
   }
 
   /**
@@ -86,11 +77,18 @@ export class ProductDetailComponent implements OnInit {
       data => {
         this.productDetail = data;
         console.log(this.productDetail)
+        this.fillStockArray();
+        this.initializeMaterialboxed();
+
       },
       error => {
         console.log(error);
       }
     );
+  }
+
+  fillStockArray(){
+    this.stockArray = Array(this.productDetail.stock).fill().map((x,i)=>i);
   }
 
   cart(){

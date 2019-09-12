@@ -14,7 +14,6 @@ export class LoginComponent {
 
   tryGoogleLogin(){
     this.authService.GoogleAuth();
-    this.authService.saveUser('test2', 'test')
   }
 
   logout(){
