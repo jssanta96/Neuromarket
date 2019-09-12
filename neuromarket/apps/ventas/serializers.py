@@ -16,4 +16,4 @@ class misComprasSerializer(serializers.ModelSerializer):
     producto = productoxComprasSerializer(read_only=True)
     class Meta:
         model = Venta
-        fields = ['id','producto','producto','factura','cantidad','precio','total']
+        fields = ['id','producto','producto','factura','fecha','cantidad','precio','total']
