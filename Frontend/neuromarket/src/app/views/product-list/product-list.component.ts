@@ -142,4 +142,18 @@ export class ProductListComponent implements OnInit {
     );
   }
 
+  /**
+   * get the product list filtered  by category
+   */
+  filterByCategory(category: string): void {
+    this.productService.getProductsByCategory(category).subscribe(
+      data => {
+        this.producList = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 }

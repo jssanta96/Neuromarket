@@ -57,4 +57,15 @@ export class ProductService {
       estado: state,
     });
   }
+
+  /**
+   * Gets the product list by category
+   *
+   * @returns { Observable<any> } an observable with the produc list by category.
+   */
+  public getProductsByCategory(category: string): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/categorias/filtrar`,{
+      campo: category
+    });
+  }
 }
