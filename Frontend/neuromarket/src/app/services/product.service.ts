@@ -68,4 +68,16 @@ export class ProductService {
       campo: category
     });
   }
+
+  /**
+   * Gets the product list by name
+   *
+   * @returns { Observable<any> } an observable with the produc list by name.
+   */
+  public getProductsByName(name: string): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/productos/busqueda`,{
+      campo: name
+    });
+  }
+
 }

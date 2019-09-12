@@ -156,4 +156,15 @@ export class ProductListComponent implements OnInit {
     );
   }
 
+  onKeydown(event): void {
+    this.productService.getProductsByName(event.target.value).subscribe(
+      data => {
+        this.producList = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
 }
