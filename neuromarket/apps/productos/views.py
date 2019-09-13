@@ -8,7 +8,7 @@ from neuromarket.apps.categorias.models import Categoria,SubCategoria
 from neuromarket.apps.usuarios.models import Usuario
 from .models import Producto,ImagenProducto,CuponProducto
 from .serializers import productoSerializer,imagenProductoSerializer
-from django.http import Http404
+from django.http import Http404,JsonResponse
 import random
 
 
@@ -27,6 +27,7 @@ class Listproductos(APIView):
             producto = Producto.objects.create(
                 nombre = data['nombre'],
                 descripcion = data['descripcion'],
+                descuento= data['descuento'],
                 stock = data['stock'],
                 condicion = data['condicion'],
                 costo = data['costo'],
@@ -205,3 +206,13 @@ class DelProducto(APIView):
             return Response("Eliminado exitosamente", status=200)
         except Producto.DoesNotExist:
             return Response("La Producto no exite",status=400)
+
+
+class Validarcupon(APIView):
+    def get(self,request,pk):
+        try:
+            cupon = CuponProducto.objects.get(codigo=pk)
+            return JsonResponse({'descuento':cupon.descuento})
+        except CuponProducto.DoesNotExist:
+            return JsonResponse({'descuento':'El producto no posee descuento'})
+ 
