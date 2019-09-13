@@ -1,0 +1,7 @@
+#footer-title,#footer-description,#footer-link-title,#footer-link,#footer-copyright-text{
+  color: black !important;
+}
+
+#footer-title,#footer-link-title{
+  font-weight: bold;
+}

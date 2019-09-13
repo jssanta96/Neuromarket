@@ -1,0 +1,55 @@
+<app-layout>
+  <div main-content class="grey lighten-5">
+    <div class="row">
+      <nav>
+        <div class="nav-wrapper">
+          <div class="col s12">
+            <a class="breadcrumb">Carrito</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row container">
+      <h5 class="center">
+        Carrito de compras
+        <i class="material-icons">shopping_cart</i>
+      </h5>
+    </div>
+    <div class="row container">
+      <div class="col s12">
+        <table class="striped highlight centered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nombre</th>
+              <th>Precio unitario</th>
+              <th>Cantidad</th>
+              <th>Precio total</th>
+              <th>Quitar</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of cartList; let i = index">
+              <td><img class="responsive-img" width="100" src="{{item.imagen}}"></td>
+              <td>{{item.name}}</td>
+              <td *ngIf="item.discount === 0">$ {{item.unitcost}}</td>
+              <td *ngIf="item.discount != 0"> $ {{item.unitcost - ((item.discount/100) * item.unitcost)}}</td>
+              <td>{{item.cantidad}}</td>
+              <td *ngIf="item.discount === 0">$ {{item.unitcost * item.cantidad}}</td>
+              <td *ngIf="item.discount != 0"> $
+                {{ (item.unitcost - ((item.discount/100) * item.unitcost)) * item.cantidad}}</td>
+              <td><a class="btn-floating btn red" (click)="removeItem(i)"><i class="material-icons">delete</i></a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="row container">
+      <div class="input-field right">
+        <input id="cupon" type="text" class="validate">
+        <label for="cupon">Cupon de descuento</label>
+        <a class="btn right">Aplicar cupón</a>
+      </div>
+    </div>
+  </div>
+</app-layout>

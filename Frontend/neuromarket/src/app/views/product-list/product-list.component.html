@@ -1,0 +1,100 @@
+<app-layout>
+  <div main-content class="grey lighten-5">
+    <div class="row">
+      <nav>
+        <div class="nav-wrapper">
+          <div class="col s12">
+            <a class="breadcrumb">Productos</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row">
+      <nav id="search-bar" class="col s4 offset-s4">
+        <div class="nav-wrapper">
+          <form>
+            <div class="input-field">
+              <input (keydown.enter)="onKeydown($event)" id="search" type="search" required>
+              <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+            </div>
+          </form>
+        </div>
+      </nav>
+    </div>
+    <div class="row row-no-margin">
+      <div class="col s3">
+        <h5>Elegir categoría</h5>
+        <ul class="collapsible">
+          <div class="collapsible-header" (click)="getProducts()">
+            <i class="material-icons">border_all</i>
+            Todas las categorías
+          </div>
+          <li *ngFor="let category of categoryList">
+            <div class="collapsible-header">
+              <i class="material-icons">{{category.icono}}</i>
+              {{category.nombre}}
+            </div>
+            <div class="collapsible-body">
+              <div class="row">
+                <div class="col s6" *ngFor="let categoryItem of category.subcategoria">
+                  <a class="sub-cat" (click)="filterByCategory(categoryItem.nombre)">{{categoryItem.nombre}}</a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col s6">
+        <ul class="collection hoverable product-card" *ngFor="let product of producList; let i = index">
+          <li routerLink="/product-detail/{{product.id}}" class="collection-item item-no-padding">
+            <div class="row row-no-margin">
+              <div class="col s3">
+                <img class="responsive-img" src="{{product.ImagenProducto[0].imagen}}">
+              </div>
+              <div class="col s9">
+                <span *ngIf="producList[i].descuento != 0" class="new badge green"
+                  data-badge-caption="">{{product.descuento}}% de descuento! </span>
+                <h4 class="product-name">{{product.nombre}}</h4>
+                <span *ngIf="producList[i].condicion">Producto nuevo</span>
+                <span *ngIf="!producList[i].condicion">Producto usado</span>
+                <strong>
+                  <h6 class="before-text" *ngIf="producList[i].descuento != 0">Antes $<s>{{product.costo}} </s></h6>
+                </strong>
+                <h5 *ngIf="producList[i].descuento === 0">$ {{product.costo}} </h5>
+                <h5 class="after-text" *ngIf="producList[i].descuento != 0">Ahora
+                  ${{product.costo - ((product.descuento/100) * product.costo)}} </h5>
+                <h6>{{product.stock}} disponibles</h6>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="col s3">
+        <h5>Filtrar productos</h5>
+        <form action="#">
+          <h6>Promoción</h6>
+          <div class="row row-no-margin">
+            <div class="col s12">
+              <select [(ngModel)]="discountFlag" name="select" (change)="getProductsfiltered()">
+                <option [ngValue]=null> Todos </option>
+                <option [ngValue]=true> Con Descuento </option>
+                <option [ngValue]=false> Sin descuento </option>
+              </select>
+            </div>
+          </div>
+          <h6>Estado</h6>
+          <div class="row row-no-margin">
+            <div class="col s12">
+              <select [(ngModel)]="selectFlag" name="select" (change)="getProductsfiltered()">
+                <option [ngValue]=null> Todos </option>
+                <option [ngValue]=true> Nuevos </option>
+                <option [ngValue]=false> Usados </option>
+              </select>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</app-layout>

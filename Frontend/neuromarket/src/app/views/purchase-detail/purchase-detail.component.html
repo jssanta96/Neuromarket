@@ -1,0 +1,44 @@
+<app-layout>
+  <div main-content class="grey lighten-5">
+    <div class="row">
+      <nav>
+        <div class="nav-wrapper">
+          <div class="col s12">
+            <a class="breadcrumb">Perfil</a>
+            <a routerLink="/purchase" class="breadcrumb">Compras</a>
+            <a class="breadcrumb">Detalle</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row container">
+      <h5 class="center">
+        Detalle de Factura # {{billID}}
+      </h5>
+    </div>
+    <div class="row container">
+      <div class="col s12">
+        <table class="striped highlight centered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio unitario</th>
+              <th>Precio total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let bill of billDetail">
+              <td><img class="responsive-img" width="100" src="{{bill.producto.ImagenProducto[0].imagen}}"></td>
+              <td>{{bill.producto.nombre}}</td>
+              <td>{{bill.cantidad}}</td>
+              <td>{{bill.precio}}</td>
+              <td>{{bill.total}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</app-layout>
