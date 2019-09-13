@@ -12,7 +12,7 @@ PAY_CHOICES = (
 class Factura(models.Model):
     fechaCompra = models.DateTimeField(auto_now=True)
     usuario = models.ForeignKey(Usuario,on_delete=models.CASCADE)
-    metodoPago = models.CharField(max_length = 20, choices = PAY_CHOICES,default="PSE")
+    metodoPago = models.CharField(max_length = 20)
     total = models.PositiveIntegerField()
     def __str__(self):
         return str(self.fechaCompra) + ":" + str(self.usuario.nombre)

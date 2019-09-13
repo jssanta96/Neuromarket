@@ -29,7 +29,7 @@ class tiendaView(APIView):
         except Usuario.DoesNotExist as u:
             return Response("Error {}".format(u),status=400)
         except IntegrityError as e:
-            return Response("Error {}".format(e),status=400)
+            return Response("El nombre de usuario ya Existe",status=400)
     
     def put(self,request):
         try:
