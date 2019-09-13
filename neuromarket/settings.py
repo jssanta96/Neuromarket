@@ -51,10 +51,7 @@ INSTALLED_APPS = [
     'corsheaders',
 
 ]
-MIDDLEWARE_CLASSES = [
-    
-    'django.middleware.locale.LocaleMiddleware',
-]
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
