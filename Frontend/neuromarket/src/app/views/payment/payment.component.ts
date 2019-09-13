@@ -40,7 +40,7 @@ export class PaymentComponent implements OnInit {
       this.newItemList.push(item)
     }
     this.buyerEmail = (JSON.parse(localStorage.getItem('user'))).email
-    this.paymentMethod = 'Test'
+    this.paymentMethod = 'Tarjeta'
     console.log('itemList ' + this.newItemList)
     console.log('buyerEmail ' + this.buyerEmail)
     console.log('paymentMethod ' + this.paymentMethod)
