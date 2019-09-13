@@ -23,6 +23,7 @@ import { PurchaseListComponent } from './views/purchase-list/purchase-list.compo
 import { PurchaseDetailComponent } from './views/purchase-detail/purchase-detail.component';
 import { SaleListComponent } from './views/sale-list/sale-list.component';
 import { PaymentComponent } from './views/payment/payment.component';
+import { RegisterProductComponent } from './views/register-product/register-product.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { PaymentComponent } from './views/payment/payment.component';
     PurchaseDetailComponent,
     SaleListComponent,
     PaymentComponent,
+    RegisterProductComponent,
   ],
   imports: [
     BrowserModule,

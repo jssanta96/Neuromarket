@@ -30,7 +30,7 @@ export class PaymentService {
    * @returns { Observable<any> } an observable with the payment.
    */
   public registerPayment(buyerEmail: string, paymentMethod: string, items: Array<any>): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/categorias/filtrar`,{
+    return this.httpClient.post(`${this.apiURL}/compras/comprar`,{
       comprador: buyerEmail,
       metodopago: paymentMethod,
       venta: items

@@ -101,4 +101,14 @@ export class ProductService {
     });
   }
 
+  /**
+   * generate a coupon for a product
+   *
+   * @returns { Observable<any> } an observable with the response
+   */
+  public deleteProduct(product: number): Observable<any> {
+    return this.httpClient.delete(`${this.apiURL}/productos/${product}`,{
+    });
+  }
+
 }

@@ -39,6 +39,7 @@ export class StoreComponent implements OnInit {
     var instances = M.Modal.init(elems);
   }
 
+
   generateCoupon(){
 
   }
