@@ -87,7 +87,19 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the list of products
    */
   public getProductsByUser(email: string): Observable<any> {
-    return this.httpClient.get(`${this.apiURL}/misproductos/${email}`);
+    return this.httpClient.get(`${this.apiURL}/productos/misproductos/${email}`);
+  }
+
+  /**
+   * generate a coupon for a product
+   *
+   * @returns { Observable<any> } an observable with the response
+   */
+  public generateCoupon(product: number, discount: number): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/productos/cupones`,{
+      idproducto: product,
+      descuento: discount
+    });
   }
 
 }

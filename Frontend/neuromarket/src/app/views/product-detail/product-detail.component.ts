@@ -96,7 +96,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   fillStockArray(){
-    this.stockArray = Array(this.productDetail.stock).fill().map((x,i)=>i);
+    this.stockArray = Array(this.productDetail.stock).fill("").map((x,i)=>i);
   }
 
   selectChangeHandler(event){

@@ -1,5 +1,6 @@
 //Dependencies
 import { Component, OnInit } from '@angular/core';
+import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
 // Services
 import { ProductService } from '../../services/product.service';
@@ -16,7 +17,8 @@ export class StoreComponent implements OnInit {
   constructor(private productService: ProductService) { }
 
   ngOnInit() {
-    this.getMyProducts()
+    this.getMyProducts();
+    this.initModal();
   }
 
   getMyProducts() {
@@ -30,6 +32,15 @@ export class StoreComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  initModal(){
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
+  }
+
+  generateCoupon(){
+
   }
 
 }
