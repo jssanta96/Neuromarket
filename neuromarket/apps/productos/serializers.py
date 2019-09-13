@@ -1,7 +1,14 @@
 from rest_framework import serializers
-from .models import Producto,ImagenProducto
+from .models import Producto,ImagenProducto,CuponProducto
 from neuromarket.apps.categorias.models import SubCategoria,Categoria
 from neuromarket.apps.tiendas.models import Tienda
+
+
+class cuponProductoSerializer(serializers.ModelSerializer):
+    "Datos cupon por producto"
+    class Meta:
+        model = CuponProducto
+        fields = '__all__'
 
 class categoriaXProductoSerializer(serializers.ModelSerializer):
     """Datos de Categoria para el json de productos """
@@ -20,10 +27,6 @@ class subCategoriaProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model = SubCategoria
         fields = ['id','nombre','categoria']
-
-
-
-
 class imagenProductoSerializer(serializers.ModelSerializer):
     """Datos de la(s) imagenes para el json de productos """
    
@@ -39,6 +42,8 @@ class productoSerializer(serializers.ModelSerializer):
     ImagenProducto = imagenProductoSerializer(many=True, read_only=True )
     subcategoria = subCategoriaProductoSerializer(read_only=True)
     tienda = tiendaXProductoSerializer(read_only = True)
+    CuponProducto = cuponProductoSerializer(many=True,read_only=True)
+    
     class Meta:
         model= Producto
         fields = '__all__'

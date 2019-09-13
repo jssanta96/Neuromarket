@@ -1,7 +1,7 @@
 from django.db import models
 
 class Usuario(models.Model):
-    codigo = models.CharField(max_length=250)
+    codigo = models.CharField(max_length=250,blank=True)
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50,blank=True)
     correo = models.EmailField(unique=True)

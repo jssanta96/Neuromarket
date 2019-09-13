@@ -51,3 +51,11 @@ class DescuentoXVolumen(models.Model):
     def __str__(self):
         return str(self.producto.nombre) + ":" + str(self.porcentajeDescuento) +"%"
     
+
+class CuponProducto(models.Model):
+    producto = models.ForeignKey(Producto,related_name='CuponProducto', on_delete=models.CASCADE)
+    codigo = models.BigIntegerField()
+    descuento = models.IntegerField()
+
+    def __str__(self):
+        return str(self.producto.nombre) + ":" + str(self.codigo)

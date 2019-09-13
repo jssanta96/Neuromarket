@@ -5,15 +5,16 @@ from datetime import datetime
 from datetime import timedelta
 from neuromarket.apps.tiendas.models import Tienda
 from neuromarket.apps.categorias.models import Categoria,SubCategoria
-from .models import Producto,ImagenProducto
+from neuromarket.apps.usuarios.models import Usuario
+from .models import Producto,ImagenProducto,CuponProducto
 from .serializers import productoSerializer,imagenProductoSerializer
 from django.http import Http404
-
+import random
 
 
 class Listproductos(APIView):
     def get(self,request):
-        productos = Producto.objects.all()
+        productos = Producto.objects.filter(estado=True)
         productos_json = productoSerializer(productos,many=True,context={"request": request})
         return Response(productos_json.data)
 
@@ -43,11 +44,36 @@ class Listproductos(APIView):
             return Response("error en los datos",status=400)
 
     
-    def put(self,request,pk):
-        pass
+    def put(self,request):
+        data = request.data
+        try:
+            subcategoria = SubCategoria.objects.get(id= data['subcategoria'])
+            producto = Producto.objects.get(id = data["id"])
+            producto.nombre = data['nombre']
+            producto.descripcion = data['descripcion']
+            producto.stock = data['stock']
+            producto.condicion = data['condicion']
+            producto.costo = data['costo']
+            producto.subcategoria = subcategoria
+            producto.save()
 
-    def delete(self,request,pk):
-        pass
+            return Response("Actualizado exitosamente", status=200)
+        except SubCategoria.DoesNotExist:
+            return Response("La subcategoria no exite",status=400)
+        except Producto.DoesNotExist:
+            return Response("La Producto no exite",status=400)
+        
+            
+
+    def delete(self,request):
+        data = request.data
+        try:
+            producto = Producto.objects.get(id=data['id'])
+            producto.estado = False
+            producto.save()
+            return Response("Eliminado exitosamente", status=200)
+        except Producto.DoesNotExist:
+            return Response("La Producto no exite",status=400)
 
 
 class ListProductosDestacados(APIView):
@@ -141,6 +167,41 @@ class SearchProducto(APIView):
         producto = Producto.objects.filter(nombre__icontains=data['campo'])
         producto_json = productoSerializer(instance=producto,many=True,context={"request": request})
         return Response(producto_json.data)
+
+class ListMisProductos(APIView):
+    def get(self,request,correo):
+        usuario = Usuario.objects.get(correo=correo)
+        tienda = Tienda.objects.get(administrador=usuario.id)
+        productos = Producto.objects.filter(tienda = tienda.id,estado =True)
+        productos_json = productoSerializer(productos,many=True,context={"request": request})
+        return Response(productos_json.data)
+
+class CuponProductoView(APIView):
+    def post(self,request):
+        try:
+            data = request.data
+            producto = Producto.objects.get(id=data['idproducto'])
+            obj, created = CuponProducto.objects.get_or_create(
+                producto = producto,
+                codigo=random.randint(100,800000),
+                descuento=data['descuento']
+            )
+
+            return Response("Creado Satisfactoriamente",status=201)
+        except:
+            return Response("Error Datos",status=404)
+
+    def delete(self,request):
+        try:
+            data = request.data
+            cupon = CuponProducto.objects.filter(id=data['id'])
+            cupon.delete()
+            return Response("Eliminado correctamente",status=200)
+        except:
+            return Response("Error Inesperado",status=501)
+
+        
+
 
             
         
