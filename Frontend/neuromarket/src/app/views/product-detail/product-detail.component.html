@@ -31,8 +31,7 @@
           <div class="row">
             <div class="input-field">
               <div class="col s9">
-                <select class="browser-default">
-                  <option value="" disabled selected>Cantidad de unidades</option>
+                <select class="browser-default" (change)="selectChangeHandler($event)">
                   <option *ngFor="let number of stockArray" value="{{number+1}}">{{number+1}}</option>
                 </select>
               </div>

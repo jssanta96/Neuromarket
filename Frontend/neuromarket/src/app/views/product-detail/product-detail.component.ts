@@ -5,6 +5,7 @@ import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
 // Services
 import { ProductService } from '../../services/product.service';
+import { checkNoChangesInRootView } from '@angular/core/src/render3/instructions';
 
 /**
  * @author Diego Bello
@@ -32,6 +33,13 @@ export class ProductDetailComponent implements OnInit {
    * @type { number }
    */
   productID: number;
+
+  /**
+   * Variable for store the product quantity
+   *
+   * @type { number }
+   */
+  productQuantity: number;
 
   /**
    * Variable for the stock
@@ -91,11 +99,34 @@ export class ProductDetailComponent implements OnInit {
     this.stockArray = Array(this.productDetail.stock).fill().map((x,i)=>i);
   }
 
+  selectChangeHandler(event){
+    this.productQuantity = event.target.value
+  }
+
   cart(){
-    var item = {
+    var newItem = {
+      imagen: this.productDetail.ImagenProducto[0].imagen,
+      name: this.productDetail.nombre,
+      unitcost: this.productDetail.costo,
+      discount: this.productDetail.descuento,
+      cantidad: this.productQuantity
     }
+
+    if(JSON.parse(localStorage.getItem('cart'))){
+      var oldCart = JSON.parse(localStorage.getItem('cart'))
+      oldCart.push(newItem)
+      console.log(oldCart)
+      localStorage.setItem('cart', JSON.stringify(oldCart));
+    } else {
+      localStorage.setItem('cart', JSON.stringify([newItem]));
+    }
+
+    //console.log(JSON.parse(localStorage.getItem('cart')))
+
     //console.log(localStorage.getItem('user'))
-    localStorage.setItem('cart', this.productID.toString());
+    //localStorage.setItem('cart', this.productID.toString());
+    //const user = JSON.parse(localStorage.getItem('user'));
+
 
   }
 }
