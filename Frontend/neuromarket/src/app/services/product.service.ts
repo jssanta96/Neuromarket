@@ -80,7 +80,6 @@ export class ProductService {
     });
   }
 
-
   /**
    * Gets the products registered by an user
    *

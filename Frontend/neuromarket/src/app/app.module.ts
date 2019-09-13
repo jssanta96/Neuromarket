@@ -22,6 +22,7 @@ import { CartComponent } from './views/cart/cart.component';
 import { PurchaseListComponent } from './views/purchase-list/purchase-list.component';
 import { PurchaseDetailComponent } from './views/purchase-detail/purchase-detail.component';
 import { SaleListComponent } from './views/sale-list/sale-list.component';
+import { PaymentComponent } from './views/payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { SaleListComponent } from './views/sale-list/sale-list.component';
     PurchaseListComponent,
     PurchaseDetailComponent,
     SaleListComponent,
+    PaymentComponent,
   ],
   imports: [
     BrowserModule,

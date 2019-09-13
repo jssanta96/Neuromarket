@@ -105,6 +105,7 @@ export class ProductDetailComponent implements OnInit {
 
   cart(){
     var newItem = {
+      id: this.productDetail.id,
       imagen: this.productDetail.ImagenProducto[0].imagen,
       name: this.productDetail.nombre,
       unitcost: this.productDetail.costo,

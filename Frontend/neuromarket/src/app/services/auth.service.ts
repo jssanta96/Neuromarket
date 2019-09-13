@@ -83,6 +83,7 @@ provider in Firestore database using AngularFirestore + AngularFirestoreDocument
   SignOut() {
     return this.afAuth.auth.signOut().then(() => {
       localStorage.removeItem('user');
+      localStorage.removeItem('cart');
       this.router.navigate(['/']);
     })
   }
