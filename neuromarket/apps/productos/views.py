@@ -22,7 +22,8 @@ class Listproductos(APIView):
         data = request.data
         try:
             subcategoria = SubCategoria.objects.get(id=data['subcategoria'])
-            tienda = Tienda.objects.get(id=data['tienda'])
+            usuario = Usuario.objects.get(correo = data['correo'])
+            tienda = Tienda.objects.get(administrador = usuario.id)
             producto = Producto.objects.create(
                 nombre = data['nombre'],
                 descripcion = data['descripcion'],
