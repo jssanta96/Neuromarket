@@ -67,6 +67,8 @@ class comprarView(APIView):
                     precio = item['precio'],
                     total = int(item['cantidad']) * item['precio']
                 )
+                producto.stock -= venta.cantidad
+                producto.save()
                 total_factura += venta.total
             
             factura.total = total_factura
