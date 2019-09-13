@@ -12,6 +12,7 @@ urlpatterns = [
     path('filtrar',FilterProducto.as_view() , name="filtro-productos"),
     path('busqueda',SearchProducto.as_view() , name="busqueda-productos"),
     path('<int:pk>', DetailProducto.as_view(), name="listar-producto-detalle"),
+    path('del/<int:pk>', DelProducto.as_view(), name="eliminar-producto"),
     path('destacados/', ListProductosDestacados.as_view(), name="listar-productosDestacados"),
     path('misproductos/<str:correo>', ListMisProductos.as_view(), name="listar-misproductos"),
     path('cupones',CuponProductoView.as_view(), name="crear-cupon"),

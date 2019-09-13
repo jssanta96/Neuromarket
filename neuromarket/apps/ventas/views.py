@@ -65,7 +65,7 @@ class comprarView(APIView):
                     factura = factura,
                     cantidad = item['cantidad'],
                     precio = item['precio'],
-                    total = int(item['cantidad']) * item['precio']
+                    total = int(item['cantidad']) * int(item['precio'])
                 )
                 total_factura += venta.total
             

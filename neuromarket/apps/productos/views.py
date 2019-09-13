@@ -65,22 +65,14 @@ class Listproductos(APIView):
         
             
 
-    def delete(self,request):
-        data = request.data
-        try:
-            producto = Producto.objects.get(id=data['id'])
-            producto.estado = False
-            producto.save()
-            return Response("Eliminado exitosamente", status=200)
-        except Producto.DoesNotExist:
-            return Response("La Producto no exite",status=400)
+   
 
 
 class ListProductosDestacados(APIView):
     
     def get(self,request):
         fecha = datetime.now() - timedelta(days=7)
-        productos = Producto.objects.filter(fecha_creacion__gte=fecha)
+        productos = Producto.objects.filter(fecha_creacion__gte=fecha,estado =True)
 
        
         productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
@@ -89,7 +81,7 @@ class ListProductosDestacados(APIView):
 class DetailProducto(APIView):
     def get(self,request,pk):
         try:
-            producto = Producto.objects.get(pk=pk)
+            producto = Producto.objects.get(pk=pk,estado =True)
             producto_json = productoSerializer(producto,context={"request": request})
             return Response(producto_json.data)
         except Producto.DoesNotExist:
@@ -115,47 +107,47 @@ class FilterProducto(APIView):
 
         try:
             if(data['estado'] == True and data['descuento'] == None):
-                productos = Producto.objects.filter(condicion = True)
+                productos = Producto.objects.filter(condicion = True,estado =True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
             if(data['estado'] == False and data['descuento'] == None):
-                productos = Producto.objects.filter(condicion = False)
+                productos = Producto.objects.filter(condicion = False,estado =True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
 
             if(data['estado'] == None and data['descuento'] == True):
-                productos = Producto.objects.filter(descuento__gt=0)
+                productos = Producto.objects.filter(descuento__gt=0,estado =True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
             
             if(data['estado'] == None and data['descuento'] == False):
-                productos = Producto.objects.filter(descuento=0)
+                productos = Producto.objects.filter(descuento=0,estado =True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
             
             if(data['estado'] == True and data['descuento'] == True):
-                productos = Producto.objects.filter(descuento__gt=1,condicion=True)
+                productos = Producto.objects.filter(descuento__gt=1,condicion=True,estado =True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
 
             if(data['estado'] == True and data['descuento'] == False):
-                productos = Producto.objects.filter(descuento=0,condicion=True)
+                productos = Producto.objects.filter(descuento=0,condicion=True,estado =True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
             
             if(data['estado'] == False and data['descuento'] == True):
-                productos = Producto.objects.filter(descuento__gt=0,condicion=False)
+                productos = Producto.objects.filter(descuento__gt=0,condicion=False,estado =True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
             
             if(data['estado'] == False and data['descuento'] == False):
-                productos = Producto.objects.filter(descuento=0,condicion=False)
+                productos = Producto.objects.filter(descuento=0,condicion=False,estado =True)
                 productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
                 return Response(productos_json.data)
             
             
 
-            productos = Producto.objects.all()
+            productos = Producto.objects.filter(estado =True)
             productos_json = productoSerializer(instance=productos,many=True,context={"request": request})
             return Response(productos_json.data)
         except Producto.DoesNotExist:
@@ -164,7 +156,7 @@ class FilterProducto(APIView):
 class SearchProducto(APIView):
     def post(self,request):
         data = request.data
-        producto = Producto.objects.filter(nombre__icontains=data['campo'])
+        producto = Producto.objects.filter(nombre__icontains=data['campo'],estado =True)
         producto_json = productoSerializer(instance=producto,many=True,context={"request": request})
         return Response(producto_json.data)
 
@@ -202,6 +194,13 @@ class CuponProductoView(APIView):
 
         
 
-
-            
-        
+class DelProducto(APIView):
+    def delete(self,request,pk):
+        data = request.data
+        try:
+            producto = Producto.objects.get(id=pk)
+            producto.estado = False
+            producto.save()
+            return Response("Eliminado exitosamente", status=200)
+        except Producto.DoesNotExist:
+            return Response("La Producto no exite",status=400)
