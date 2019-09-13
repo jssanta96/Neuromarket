@@ -38,13 +38,13 @@ export class CartComponent implements OnInit {
   }
 
   validateLogin() {
-    console.log(this.cartList.length)
+    console.log(this.cartList)
 
-    if (this.authService.isLoggedIn() && this.cartList.length !== 0) {
-      this.router.navigate(['/payment']);
-    }
-    else if (this.authService.isLoggedIn() && this.cartList.length === 0){
+    if (this.cartList == null || (this.authService.isLoggedIn() && this.cartList.length === 0)){
       this.router.navigate(['/product-list']);
+    }
+    else if (this.authService.isLoggedIn() && this.cartList.length !== 0) {
+      this.router.navigate(['/payment']);
     }
     else if(!this.authService.isLoggedIn()){
       this.router.navigate(['/login']);
