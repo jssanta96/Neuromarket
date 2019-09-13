@@ -31,7 +31,7 @@ class FilterCategoria(APIView):
     def post(self,request):
         data = request.data
         subCategorias = SubCategoria.objects.filter(nombre__icontains=data['campo'])
-        producto = Producto.objects.filter(subcategoria_id__in=Subquery(subCategorias.values('id')))
+        producto = Producto.objects.filter(subcategoria_id__in=Subquery(subCategorias.values('id')),estado=True)
         subCategorias_json = productoSerializer(instance=producto,many=True,context={"request": request})
         return Response(subCategorias_json.data)
 
