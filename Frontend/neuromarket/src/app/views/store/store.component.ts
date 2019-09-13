@@ -1,4 +1,8 @@
+//Dependencies
 import { Component, OnInit } from '@angular/core';
+
+// Services
+import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-store',
@@ -7,9 +11,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StoreComponent implements OnInit {
 
-  constructor() { }
+  productList
+
+  constructor(private productService: ProductService) { }
 
   ngOnInit() {
+    this.getMyProducts()
+  }
+
+  getMyProducts() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    this.productService.getProductsByUser(user.email).subscribe(
+      data => {
+        this.productList = data;
+        console.log(this.productList)
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
 }

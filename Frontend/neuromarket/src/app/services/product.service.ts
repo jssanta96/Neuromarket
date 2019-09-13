@@ -80,4 +80,14 @@ export class ProductService {
     });
   }
 
+
+  /**
+   * Gets the products registered by an user
+   *
+   * @returns { Observable<any> } an observable with the list of products
+   */
+  public getProductsByUser(email: string): Observable<any> {
+    return this.httpClient.get(`${this.apiURL}/misproductos/${email}`);
+  }
+
 }
