@@ -107,8 +107,17 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the response
    */
   public deleteProduct(product: number): Observable<any> {
-    return this.httpClient.delete(`${this.apiURL}/productos/${product}`,{
+    return this.httpClient.delete(`${this.apiURL}/productos/del/${product}`,{
     });
+  }
+  
+  /**
+   * generate a coupon for a product
+   *
+   * @returns { Observable<any> } an observable with the response
+   */
+  public registerProduct(formdata: any): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/productos/`,formdata);
   }
 
 }

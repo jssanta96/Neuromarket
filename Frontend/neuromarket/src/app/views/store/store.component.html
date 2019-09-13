@@ -51,9 +51,10 @@
               <td>{{product.fecha_creacion | date : 'short'}}</td>
               <td *ngIf="product.CuponProducto.length === 0"> <a class="btn modal-trigger"
                   href="#modalCoupon">Generar</a></td>
+              <td *ngIf="product.CuponProducto.length !== 0">{{product.CuponProducto[0].codigo}}</td>
               <td *ngIf="product.CuponProducto.length !== 0">{{product.codigo}}</td>
               <td><a class="btn-floating btn blue"><i class="material-icons">edit</i></a></td>
-              <td><a class="btn-floating btn red"><i class="material-icons">delete</i></a></td>
+              <td><a class="btn-floating btn red" (click)="deleteItem(product.id)"><i class="material-icons">delete</i></a></td>
             </tr>
           </tbody>
         </table>

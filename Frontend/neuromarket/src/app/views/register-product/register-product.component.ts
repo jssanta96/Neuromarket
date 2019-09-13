@@ -21,7 +21,8 @@ export class RegisterProductComponent implements OnInit {
   cost;
   condition;
   image;
-
+  email;
+  discount;
 
   constructor(
     private productService: ProductService,
@@ -48,26 +49,39 @@ export class RegisterProductComponent implements OnInit {
   }
 
   selectCategoryEvent(event) {
-    console.log(event.target.value)
     this.subCatList = (this.categoryList[event.target.value - 1]).subcategoria
-    console.log(this.subCatList)
   }
 
   saveProduct() {
-    console.log(this.name)
-    console.log(this.description)
-    console.log(this.cat)
-    console.log(this.subCat)
-    console.log(this.quantity)
-    console.log(this.cost)
-    console.log(this.condition)
-    console.log(this.image)
+    this.email = (JSON.parse(localStorage.getItem('user'))).email
+
+    if(this.discount == null){
+      this.discount = '0'
+    }
+
+    let formData = new FormData();
+    formData.append('correo', this.email)
+    formData.append('nombre', this.name)
+    formData.append('descripcion', this.description)
+    formData.append('file', this.image)
+    formData.append('stock', this.quantity)
+    formData.append('condicion', this.condition)
+    formData.append('costo', this.cost)
+    formData.append('subcategoria', this.subCat)
+    formData.append('descuento', this.discount)
+
+    this.productService.registerProduct(formData).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
   postMethod(files: FileList) {
     this.image = files.item(0);
-    /*let formData = new FormData();
-    formData.append('file', this.image, this.image.name);*/
   }
 
 }

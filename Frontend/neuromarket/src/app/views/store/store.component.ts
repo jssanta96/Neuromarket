@@ -34,13 +34,26 @@ export class StoreComponent implements OnInit {
     );
   }
 
-  initModal(){
+  initModal() {
     var elems = document.querySelectorAll('.modal');
     var instances = M.Modal.init(elems);
   }
 
+  deleteItem(itenID){
+    this.productService.deleteProduct(itenID).subscribe(
+      data => {
+        console.log(data)
+        this.getMyProducts();
+      },
+      error => {
+        console.log(error);
+      }
+    );
 
-  generateCoupon(){
+
+  }
+
+  generateCoupon() {
 
   }
 

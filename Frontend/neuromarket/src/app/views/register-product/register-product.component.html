@@ -45,13 +45,17 @@
       </div>
     </div>
     <div class="row container">
-      <div class="input-field col s6">
+      <div class="input-field col s4">
         <input [(ngModel)]="quantity" name="quantity" id="stock" type="number" class="validate">
         <label for="stock">Cantidad</label>
       </div>
-      <div class="input-field col s6">
+      <div class="input-field col s4">
         <input [(ngModel)]="cost" name="cost" id="price" type="number" class="validate">
         <label for="price">Costo por unidad</label>
+      </div>
+      <div class="input-field col s4">
+        <input [(ngModel)]="discount" name="discount" id="price" type="number" class="validate" value="discount" min="0" max="100">
+        <label for="discount">Descuento</label>
       </div>
     </div>
     <div class="row container">
@@ -59,8 +63,8 @@
         <label>Condicion</label>
         <br>
         <select [(ngModel)]="condition" name="condition" class="browser-default">
-          <option [ngValue]=true> Nuevo </option>
-          <option [ngValue]=false> Usado </option>
+          <option value="True"> Nuevo </option>
+          <option value="False"> Usado </option>
         </select>
       </div>
       <div class="col s6">
