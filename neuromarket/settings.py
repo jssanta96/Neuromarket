@@ -51,7 +51,10 @@ INSTALLED_APPS = [
     'corsheaders',
 
 ]
-
+MIDDLEWARE_CLASSES = [
+    
+    'django.middleware.locale.LocaleMiddleware',
+]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -122,7 +125,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'es-es'
+LANGUAGE_CODE = "es-es"
 
 TIME_ZONE = 'America/Bogota'
 
