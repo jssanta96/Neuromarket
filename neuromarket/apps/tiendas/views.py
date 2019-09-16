@@ -15,7 +15,6 @@ class tiendaView(APIView):
         imagen = request.POST.get('imagen',None)
         telefono = request.POST.get('telefono',0)
         try:
-            import pdb; pdb.set_trace()
             obj, created = Usuario.objects.get_or_create(nombre=data['correousuario'],correo=data['correousuario'])
             obj, created = Tienda.objects.get_or_create(
                 nombre = data['nombre'],
@@ -49,3 +48,15 @@ class tiendaView(APIView):
             return Response("Error {}".format(u),status=400)
         
         
+
+class validarTienda(APIView):
+    def get(self,request,correo):
+        try:
+            usuario = Usuario.objects.get(correo=correo)
+            tienda = Tienda.objects.get(administrador = usuario.id)
+            return Response(True,status=200)
+        except Usuario.DoesNotExist:
+            return Response(False,status=404)
+        
+        except Tienda.DoesNotExist:
+            return Response(False,status=404)

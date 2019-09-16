@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import Http404
+from neuromarket.apps.tiendas.models import Tienda
 from .models import Usuario
 import random
 
@@ -19,3 +20,4 @@ class usuarioView(APIView):
                 return Response("creado exitosamente", status=201)   
         except:
             return Response("El usuario ya existe",status=200)
+

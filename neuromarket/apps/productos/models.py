@@ -42,7 +42,7 @@ class ImagenProducto(models.Model):
 
 class DescuentoXVolumen(models.Model):
     """Modelo descuento por volumen sobre un producto"""
-    producto = models.ForeignKey(Producto, on_delete=models.CASCADE)
+    producto = models.ForeignKey(Producto,related_name='DescuentoXVolumen',on_delete=models.CASCADE)
     cantidad = models.PositiveIntegerField()
     porcentajeDescuento = models.PositiveIntegerField()
     estado = models.BooleanField(default=True)
@@ -54,8 +54,11 @@ class DescuentoXVolumen(models.Model):
 
 class CuponProducto(models.Model):
     producto = models.ForeignKey(Producto,related_name='CuponProducto', on_delete=models.CASCADE)
+    cantidad = models.PositiveIntegerField(default=1)
     codigo = models.BigIntegerField()
     descuento = models.IntegerField()
 
     def __str__(self):
         return str(self.producto.nombre) + ":" + str(self.codigo)
+
+

@@ -9,4 +9,5 @@ from .views import usuarioView
 urlpatterns = [
     path('', usuarioView.as_view(), name="usuario"),
     
+    
 ]
