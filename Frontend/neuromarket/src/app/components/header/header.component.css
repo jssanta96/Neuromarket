@@ -13,11 +13,12 @@
 }
 
 .nav-link{
-  color: black !important;
+  color: white !important;
   font-weight: bold;
 }
 
 .activeLink{
-  background-color: lightgray;
+  background-color: #64b5f6;
+  color: white !important;
 }
 

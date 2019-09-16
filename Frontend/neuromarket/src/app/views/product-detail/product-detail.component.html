@@ -1,12 +1,12 @@
 <app-layout>
-  <div *ngIf="productDetail !== undefined" main-content class="grey lighten-5">
+  <div main-content class="grey lighten-5">
     <div class="row">
       <nav>
         <div class="nav-wrapper">
-          <div class="col s12">
-            <a class="breadcrumb">Productos</a>
-            <a class="breadcrumb">{{productDetail.subcategoria.categoria.nombre}}</a>
-            <a class="breadcrumb">{{productDetail.subcategoria.nombre}}</a>
+          <div class="col s12 blue lighten-5">
+            <a class="breadcrumb black-text">Productos</a>
+            <a class="breadcrumb black-text">{{productDetail.subcategoria.categoria.nombre}}</a>
+            <a class="breadcrumb black-text">{{productDetail.subcategoria.nombre}}</a>
           </div>
         </div>
       </nav>
@@ -40,7 +40,7 @@
               </div>
             </div>
           </div>
-          <a onclick="M.toast({html: 'Agregado al carrito'})" (click)="cart()" class="btn right">Añadir al carrito</a>
+          <a onclick="M.toast({html: 'Agregado al carrito'})" (click)="cart()" class="btn right blue darken-1 add-cart">Añadir al carrito</a>
         </div>
       </div>
     </div>

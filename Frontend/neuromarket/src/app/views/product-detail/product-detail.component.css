@@ -5,3 +5,8 @@
  .after-text{
   color: #388e3c;
  }
+
+ .add-cart:hover{
+  color: white;
+  background-color: #42a5f5 !important;
+ }
