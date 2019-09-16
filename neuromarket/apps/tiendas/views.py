@@ -15,20 +15,20 @@ class tiendaView(APIView):
         imagen = request.POST.get('imagen',None)
         telefono = request.POST.get('telefono',0)
         try:
-            obj, created = Usuario.objects.get_or_create(nombre=data['correousuario'],correo=data['correousuario'])
+            usuario = Usuario.objects.get(correo=data['correousuario'])
             obj, created = Tienda.objects.get_or_create(
                 nombre = data['nombre'],
                 imagen = imagen,
                 descripcion = descripcion,
                 telefono = telefono,
                 correo = correo,
-                administrador = obj
+                administrador = usuario
             )
-            return Response("creado exitosamente", status=201)
+            return Response("creado exitosamente")
         except Usuario.DoesNotExist as u:
-            return Response("Error {}".format(u),status=400)
+            return Response("Error {}".format(u))
         except IntegrityError as e:
-            return Response("El nombre de usuario ya Existe",status=400)
+            return Response("El nombre de usuario ya Existe")
     
     def put(self,request):
         try:
