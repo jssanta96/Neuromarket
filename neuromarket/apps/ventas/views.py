@@ -55,7 +55,6 @@ class comprarView(APIView):
     def post(self,request):
         try:
             data = request.data
-            import pdb; pdb.set_trace()
             usuario = Usuario.objects.get(correo=data['comprador'])
             factura = Factura.objects.create(usuario= usuario, metodoPago = data['metodopago'],total= 0)
             total_factura = 0
