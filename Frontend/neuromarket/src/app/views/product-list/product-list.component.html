@@ -2,15 +2,15 @@
   <div main-content class="grey lighten-5">
     <div class="row">
       <nav>
-        <div class="nav-wrapper">
+        <div class="nav-wrapper blue lighten-5">
           <div class="col s12">
-            <a class="breadcrumb">Productos</a>
+            <a class="breadcrumb" style="color: black !important;">Productos</a>
           </div>
         </div>
       </nav>
     </div>
     <div class="row">
-      <nav id="search-bar" class="col s4 offset-s4">
+      <nav id="search-bar" class="col s4 offset-s4 blue lighten-5 ">
         <div class="nav-wrapper">
           <form>
             <div class="input-field">
@@ -46,23 +46,23 @@
         </ul>
       </div>
       <div class="col s6">
-        <ul class="collection hoverable product-card" *ngFor="let product of producList; let i = index">
+        <ul class="collection hoverable product-card" *ngFor="let product of productList; let i = index">
           <li routerLink="/product-detail/{{product.id}}" class="collection-item item-no-padding">
             <div class="row row-no-margin">
               <div class="col s3">
                 <img class="responsive-img" src="{{product.ImagenProducto[0].imagen}}">
               </div>
               <div class="col s9">
-                <span *ngIf="producList[i].descuento != 0" class="new badge green"
+                <span *ngIf="productList[i].descuento != 0" class="new badge green"
                   data-badge-caption="">{{product.descuento}}% de descuento! </span>
                 <h4 class="product-name">{{product.nombre}}</h4>
-                <span *ngIf="producList[i].condicion">Producto nuevo</span>
-                <span *ngIf="!producList[i].condicion">Producto usado</span>
+                <span *ngIf="productList[i].condicion">Producto nuevo</span>
+                <span *ngIf="!productList[i].condicion">Producto usado</span>
                 <strong>
-                  <h6 class="before-text" *ngIf="producList[i].descuento != 0">Antes $<s>{{product.costo}} </s></h6>
+                  <h6 class="before-text" *ngIf="productList[i].descuento != 0">Antes $<s>{{product.costo}} </s></h6>
                 </strong>
-                <h5 *ngIf="producList[i].descuento === 0">$ {{product.costo}} </h5>
-                <h5 class="after-text" *ngIf="producList[i].descuento != 0">Ahora
+                <h5 *ngIf="productList[i].descuento === 0">$ {{product.costo}} </h5>
+                <h5 class="after-text" *ngIf="productList[i].descuento != 0">Ahora
                   ${{product.costo - ((product.descuento/100) * product.costo)}} </h5>
                 <h6>{{product.stock}} disponibles</h6>
               </div>

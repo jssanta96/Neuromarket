@@ -1,4 +1,6 @@
+// Dependencies
 import { Component, OnInit } from '@angular/core';
+import swal from'sweetalert2';
 
 // Services
 import { ProductService } from '../../services/product.service';
@@ -23,6 +25,7 @@ export class RegisterProductComponent implements OnInit {
   image;
   email;
   discount;
+  errorAlert: string = '';
 
   constructor(
     private productService: ProductService,
@@ -75,7 +78,11 @@ export class RegisterProductComponent implements OnInit {
         console.log(data)
       },
       error => {
-        console.log(error);
+        swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Por favor completa el formulario!'
+        })
       }
     );
   }

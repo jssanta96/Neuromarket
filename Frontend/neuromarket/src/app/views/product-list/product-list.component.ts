@@ -24,17 +24,8 @@ export class ProductListComponent implements OnInit {
    *
    * @type { object }
    */
-  optionsDatePicker: object = {
-    accordion: false,
-  }
-
-  /**
-   * Variable for the collapsible options
-   *
-   * @type { object }
-   */
   optionsCollapsible: object = {
-    maxDate: new Date(),
+    accordion: false,
   }
 
   /**
@@ -42,7 +33,7 @@ export class ProductListComponent implements OnInit {
    *
    * @type { Array<object> }
    */
-  producList: any;
+  productList: any;
 
   /**
    * Variable for store the categories list
@@ -51,8 +42,14 @@ export class ProductListComponent implements OnInit {
    */
   categoryList: any;
 
+  /**
+   * Flag for store the value of the discount
+   */
   discountFlag = null;
 
+  /**
+   * Flag for store the value of the select
+   */
   selectFlag = null;
 
   /**
@@ -69,23 +66,14 @@ export class ProductListComponent implements OnInit {
    * Callback on init component.
    */
   ngOnInit() {
-    this.initializeDatePicker();
-    this.initializeCollapsible();
     this.getProducts();
     this.getCategories();
     this.initializeSelect();
+    this.initializeCollapsible();
   }
 
   /**
-   * Initialize the materialize datePicker
-   */
-  initializeDatePicker(): void {
-    var elems = document.querySelectorAll('.datepicker');
-    M.Datepicker.init(elems, this.optionsDatePicker);
-  }
-
-  /**
-   * Initialize the materialize datePicker
+   * Initialize the materialize collapsible
    */
   initializeCollapsible(): void {
     var elems = document.querySelectorAll('.collapsible');
@@ -106,7 +94,7 @@ export class ProductListComponent implements OnInit {
   getProducts(): void {
     this.productService.getProducts().subscribe(
       data => {
-        this.producList = data;
+        this.productList = data;
       },
       error => {
         console.log(error);
@@ -132,9 +120,10 @@ export class ProductListComponent implements OnInit {
    * get the product list.
    */
   getProductsfiltered(): void {
+    this.productList = undefined
     this.productService.getProductsFiltered(this.discountFlag, this.selectFlag).subscribe(
       data => {
-        this.producList = data;
+        this.productList = data;
       },
       error => {
         console.log(error);
@@ -146,9 +135,10 @@ export class ProductListComponent implements OnInit {
    * get the product list filtered  by category
    */
   filterByCategory(category: string): void {
+    this.productList = undefined
     this.productService.getProductsByCategory(category).subscribe(
       data => {
-        this.producList = data;
+        this.productList = data;
       },
       error => {
         console.log(error);
@@ -157,9 +147,10 @@ export class ProductListComponent implements OnInit {
   }
 
   onKeydown(event): void {
+    this.productList = undefined;
     this.productService.getProductsByName(event.target.value).subscribe(
       data => {
-        this.producList = data;
+        this.productList = data;
       },
       error => {
         console.log(error);

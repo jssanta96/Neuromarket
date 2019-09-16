@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from "@angular/router";
 import { PaymentService } from '../../services/payment.service'
+import swal from'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -14,7 +15,10 @@ export class PaymentComponent implements OnInit {
   paymentMethod;
   newItemList = [];
 
-  constructor(private paymentService: PaymentService) { }
+  constructor(
+    private paymentService: PaymentService,
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.initializeData()
@@ -51,6 +55,14 @@ export class PaymentComponent implements OnInit {
       data => {
         console.log(data)
         localStorage.removeItem('cart');
+        this.router.navigate(['/product-list']);
+        swal.fire({
+          type: 'success',
+          title: 'Tu pago a sido registrado',
+          footer: 'Sigue comprando!',
+          showConfirmButton: false,
+          timer: 1500
+        })
       },
       error => {
         console.log(error);
