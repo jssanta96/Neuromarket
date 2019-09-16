@@ -4,6 +4,7 @@ import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
 
 // Services
 import { ProductService } from '../../services/product.service';
+import { StoreService } from '../../services/store.service';
 
 @Component({
   selector: 'app-store',
@@ -12,11 +13,17 @@ import { ProductService } from '../../services/product.service';
 })
 export class StoreComponent implements OnInit {
 
-  productList
+  productList;
+  storeState;
 
-  constructor(private productService: ProductService) { }
+  constructor(
+    private productService: ProductService,
+    private storeService: StoreService
+    )
+  { }
 
   ngOnInit() {
+    this.getStoreState();
     this.getMyProducts();
     this.initModal();
   }
@@ -39,7 +46,7 @@ export class StoreComponent implements OnInit {
     var instances = M.Modal.init(elems);
   }
 
-  deleteItem(itenID){
+  deleteItem(itenID) {
     this.productService.deleteProduct(itenID).subscribe(
       data => {
         console.log(data)
@@ -49,12 +56,19 @@ export class StoreComponent implements OnInit {
         console.log(error);
       }
     );
-
-
   }
 
-  generateCoupon() {
-
+  getStoreState() {
+    var user = JSON.parse(localStorage.getItem('user'));
+    this.storeService.getStoreState(user.email).subscribe(
+      data => {
+        console.log(data)
+        this.storeState = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
   }
 
 }
