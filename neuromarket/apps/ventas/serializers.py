@@ -17,3 +17,7 @@ class misComprasSerializer(serializers.ModelSerializer):
     class Meta:
         model = Venta
         fields = ['id','producto','producto','factura','fecha','cantidad','precio','total']
+
+class reporteVentasSerializer(serializers.Serializer):
+    fecha = serializers.DateField()
+    cant = serializers.IntegerField()

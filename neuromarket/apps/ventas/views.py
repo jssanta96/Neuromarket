@@ -6,8 +6,9 @@ from neuromarket.apps.usuarios.models import Usuario
 from neuromarket.apps.tiendas.models import Tienda
 from neuromarket.apps.productos.models import Producto
 from django.db.models import Subquery
-from .serializers import facturaSerializer,misComprasSerializer
+from .serializers import facturaSerializer,misComprasSerializer,reporteVentasSerializer
 from django.http import Http404
+from django.db.models import Count
 
 
 
@@ -54,6 +55,7 @@ class comprarView(APIView):
     def post(self,request):
         try:
             data = request.data
+            import pdb; pdb.set_trace()
             usuario = Usuario.objects.get(correo=data['comprador'])
             factura = Factura.objects.create(usuario= usuario, metodoPago = data['metodopago'],total= 0)
             total_factura = 0
@@ -74,6 +76,16 @@ class comprarView(APIView):
             factura.total = total_factura
             factura.save()
             return  Response("Se ha registrado su compra Correctamente",status= 201)
-
         except:
-            raise Http404
+            return  Response("erroor",status= 201)
+       
+
+
+class ventasReportView(APIView):
+    def get(self,request,correo):
+        usuario = Usuario.objects.get(correo=correo)
+        tienda = Tienda.objects.get(administrador = usuario.id)
+        productos = Producto.objects.filter(tienda=tienda.id)
+        ventas = Venta.objects.values('fecha').annotate(cant=Count('fecha'))
+        ventas_json = reporteVentasSerializer(ventas,many=True,context={"request": request})
+        return Response(ventas_json.data)
