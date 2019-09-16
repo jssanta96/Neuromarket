@@ -24,7 +24,6 @@ class facturaView(APIView):
             raise Http404
 
     
-
 class misComprasView(APIView):
     def get(self,request,pk):
         try:
