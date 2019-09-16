@@ -59,13 +59,15 @@ export class PaymentComponent implements OnInit {
         swal.fire({
           type: 'success',
           title: 'Tu pago a sido registrado',
-          footer: 'Sigue comprando!',
-          showConfirmButton: false,
-          timer: 1500
+          text: 'Sigue comprando!',
         })
       },
       error => {
-        console.log(error);
+        swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: 'Ha ocurrido un error!',
+        })
       }
     );
   }

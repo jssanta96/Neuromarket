@@ -1,6 +1,7 @@
 //Dependencies
 import { Component, OnInit } from '@angular/core';
 import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
+import swal from'sweetalert2';
 
 // Services
 import { ProductService } from '../../services/product.service';
@@ -15,16 +16,16 @@ export class StoreComponent implements OnInit {
 
   productList;
   storeState;
+  userData;
 
   constructor(
     private productService: ProductService,
     private storeService: StoreService
-    )
-  { }
+  ) { }
 
   ngOnInit() {
+    this.loadUserData();
     this.getStoreState();
-    this.getMyProducts();
     this.initModal();
   }
 
@@ -39,6 +40,10 @@ export class StoreComponent implements OnInit {
         console.log(error);
       }
     );
+  }
+
+  loadUserData() {
+    this.userData = JSON.parse(localStorage.getItem('user'));
   }
 
   initModal() {
@@ -59,11 +64,27 @@ export class StoreComponent implements OnInit {
   }
 
   getStoreState() {
-    var user = JSON.parse(localStorage.getItem('user'));
-    this.storeService.getStoreState(user.email).subscribe(
+    this.storeService.getStoreState(this.userData.email).subscribe(
       data => {
         console.log(data)
         this.storeState = data;
+        this.getMyProducts();
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  newStore() {
+    this.storeService.createStore(this.userData.email, this.userData.displayName).subscribe(
+      data => {
+        swal.fire({
+          type: 'success',
+          title: 'Tienda creada exitosamente',
+          text: 'Empieza a comprar y vender!',
+        })
+        this.storeState = true
       },
       error => {
         console.log(error);

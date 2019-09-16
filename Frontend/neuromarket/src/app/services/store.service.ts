@@ -30,4 +30,16 @@ export class StoreService {
   public getStoreState(email: string): Observable<any> {
     return this.httpClient.get(`${this.apiURL}/tienda/validar/${email}`);
   }
+
+  /**
+   * Create an store
+   *
+   * @returns { Observable<any> } an observable with the response
+   */
+  public createStore(email: string, name: string): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/tienda/`,{
+      correousuario: email,
+      nombre: name
+    });
+  }
 }

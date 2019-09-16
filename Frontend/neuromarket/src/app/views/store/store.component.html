@@ -10,56 +10,78 @@
         </div>
       </nav>
     </div>
-    <div class="row container">
-      <h5 class="center">
-        Lista de productos en venta
-      </h5>
-    </div>
-    <div class="row container center-align">
-      <a class="btn-large store-btn blue darken-1" routerLink="/register-product">Registrar</a>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <table class="striped highlight centered">
-          <thead>
-            <tr>
-              <th></th>
-              <th>Nombre</th>
-              <th>Categoría</th>
-              <th>Sub-Categoría</th>
-              <th>Existencias</th>
-              <th>Descuento</th>
-              <th>Estado</th>
-              <th>Costo</th>
-              <th>Fecha de creacion</th>
-              <th>Cupon</th>
-              <th>Editar</th>
-              <th>Eliminar</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let product of productList">
-              <td><img class="responsive-img" width="100" src="{{product.ImagenProducto[0].imagen}}"></td>
-              <td>{{product.nombre}}</td>
-              <td>{{product.subcategoria.categoria.nombre}}</td>
-              <td>{{product.subcategoria.nombre}}</td>
-              <td>{{product.stock}}</td>
-              <td>{{product.descuento}}%</td>
-              <td *ngIf="product.condicion">Nuevo</td>
-              <td *ngIf="!product.condicion">Usado</td>
-              <td>$ {{product.costo}}</td>
-              <td>{{product.fecha_creacion | date : 'short'}}</td>
-              <td *ngIf="product.CuponProducto.length === 0"> <a class="btn modal-trigger store-btn blue darken-1"
-                  href="#modalCoupon">Generar</a></td>
-              <td *ngIf="product.CuponProducto.length !== 0">{{product.CuponProducto[0].codigo}}</td>
-              <td *ngIf="product.CuponProducto.length !== 0">{{product.codigo}}</td>
-              <td><a class="btn-floating btn blue"><i class="material-icons">edit</i></a></td>
-              <td><a class="btn-floating btn red" (click)="deleteItem(product.id)"><i class="material-icons">delete</i></a></td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="row" *ngIf="storeState; else createStore">
+      <div class="row container">
+        <h5 class="center">
+          Lista de productos en venta
+        </h5>
+      </div>
+      <div class="row container center-align">
+        <a class="btn-large store-btn blue darken-1" routerLink="/register-product">Registrar</a>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <table class="striped highlight centered">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Nombre</th>
+                <th>Categoría</th>
+                <th>Sub-Categoría</th>
+                <th>Existencias</th>
+                <th>Descuento</th>
+                <th>Estado</th>
+                <th>Costo</th>
+                <th>Fecha de creacion</th>
+                <th>Cupon</th>
+                <th>Editar</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let product of productList">
+                <td><img class="responsive-img" width="100" src="{{product.ImagenProducto[0].imagen}}"></td>
+                <td>{{product.nombre}}</td>
+                <td>{{product.subcategoria.categoria.nombre}}</td>
+                <td>{{product.subcategoria.nombre}}</td>
+                <td>{{product.stock}}</td>
+                <td>{{product.descuento}}%</td>
+                <td *ngIf="product.condicion">Nuevo</td>
+                <td *ngIf="!product.condicion">Usado</td>
+                <td>$ {{product.costo}}</td>
+                <td>{{product.fecha_creacion | date : 'short'}}</td>
+                <td *ngIf="product.CuponProducto.length === 0"> <a class="btn modal-trigger store-btn blue darken-1"
+                    href="#modalCoupon">Generar</a></td>
+                <td *ngIf="product.CuponProducto.length !== 0">{{product.CuponProducto[0].codigo}}</td>
+                <td *ngIf="product.CuponProducto.length !== 0">{{product.codigo}}</td>
+                <td><a class="btn-floating btn blue"><i class="material-icons">edit</i></a></td>
+                <td><a class="btn-floating btn red" (click)="deleteItem(product.id)"><i
+                      class="material-icons">delete</i></a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
+    <ng-template #createStore>
+      <div class="row container">
+        <div class="col s12">
+          <h3 style="text-align: center;">
+            Aún no tienes una tienda, crea una para empezar a comprar y vender productos!
+          </h3>
+        </div>
+      </div>
+      <div class="row container center-align">
+        <div class="col s12">
+          <a class="btn-large store-btn blue darken-1" (click)="newStore()">crear</a>
+        </div>
+      </div>
+      <div class="row container center-align">
+        <div class="col s12">
+          <img class="responsive-img"  src="assets/images/ecommerce.png">
+        </div>
+      </div>
+    </ng-template>
 
     <div id="modalCoupon" class="modal">
       <div class="modal-content">
@@ -73,5 +95,6 @@
         <a class="btn-flat">Aplicar</a>
       </div>
     </div>
+
   </div>
 </app-layout>

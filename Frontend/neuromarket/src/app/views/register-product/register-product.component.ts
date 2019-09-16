@@ -1,6 +1,7 @@
 // Dependencies
 import { Component, OnInit } from '@angular/core';
-import swal from'sweetalert2';
+import { Router } from "@angular/router";
+import swal from 'sweetalert2';
 
 // Services
 import { ProductService } from '../../services/product.service';
@@ -30,6 +31,7 @@ export class RegisterProductComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -58,7 +60,7 @@ export class RegisterProductComponent implements OnInit {
   saveProduct() {
     this.email = (JSON.parse(localStorage.getItem('user'))).email
 
-    if(this.discount == null){
+    if (this.discount == null) {
       this.discount = '0'
     }
 
@@ -75,7 +77,11 @@ export class RegisterProductComponent implements OnInit {
 
     this.productService.registerProduct(formData).subscribe(
       data => {
-        console.log(data)
+        this.router.navigate(['/store']);
+        swal.fire({
+          type: 'success',
+          title: 'Producto agregado exitosamente',
+        })
       },
       error => {
         swal.fire({
