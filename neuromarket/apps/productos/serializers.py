@@ -34,6 +34,12 @@ class imagenProductoSerializer(serializers.ModelSerializer):
     class Meta:
         model= ImagenProducto
         fields = ['id','nombre','imagen']
+
+class DescuentoXVolumenSerializer(serializers.ModelSerializer):
+    """json Descuentos por Volumen """
+    class Meta:
+        model= DescuentoXVolumen
+        fields = ['id','cantidad','porcentajeDescuento']
      
 class productoSerializer(serializers.ModelSerializer):
     """json productos """
@@ -41,6 +47,7 @@ class productoSerializer(serializers.ModelSerializer):
     subcategoria = subCategoriaProductoSerializer(read_only=True)
     tienda = tiendaXProductoSerializer(read_only = True)
     CuponProducto = cuponProductoSerializer(many=True,read_only=True)
+    DescuentoXVolumen = DescuentoXVolumenSerializer(many=True,read_only=True)
     
     class Meta:
         model= Producto

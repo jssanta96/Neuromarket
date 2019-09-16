@@ -177,6 +177,7 @@ class CuponProductoView(APIView):
             producto = Producto.objects.get(id=data['idproducto'])
             obj, created = CuponProducto.objects.get_or_create(
                 producto = producto,
+                cantidad = data['cantidad'],
                 codigo=random.randint(100,800000),
                 descuento=data['descuento']
             )

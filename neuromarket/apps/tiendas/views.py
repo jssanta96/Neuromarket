@@ -56,7 +56,7 @@ class validarTienda(APIView):
             tienda = Tienda.objects.get(administrador = usuario.id)
             return Response(True,status=200)
         except Usuario.DoesNotExist:
-            return Response(False,status=404)
+            return Response(False,status=200)
         
         except Tienda.DoesNotExist:
-            return Response(False,status=404)
+            return Response(False,status=200)
