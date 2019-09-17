@@ -113,7 +113,25 @@ export class StoreComponent implements OnInit {
       error => {
         swal.fire({
           type: 'error',
-          title: 'Cupon creado exitosamente',
+          title: 'El cupon no ha podidos ser creado',
+        })
+      }
+    );
+  }
+
+  deleteCoupon(couponID) {
+    this.productService.deleteCoupon(couponID).subscribe(
+      data => {
+        swal.fire({
+          type: 'success',
+          title: 'Cupon eliminadp exitosamente',
+        })
+        this.getMyProducts();
+      },
+      error => {
+        swal.fire({
+          type: 'error',
+          title: 'El cupon no ha podidos ser eliminado',
         })
       }
     );

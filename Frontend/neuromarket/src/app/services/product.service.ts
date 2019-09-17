@@ -103,7 +103,7 @@ export class ProductService {
   }
 
   /**
-   * generate a coupon for a product
+   * Delete a product
    *
    * @returns { Observable<any> } an observable with the response
    */
@@ -119,6 +119,16 @@ export class ProductService {
    */
   public registerProduct(formdata: any): Observable<any> {
     return this.httpClient.post(`${this.apiURL}/productos/`,formdata);
+  }
+
+  /**
+   * delete a coupon for a product
+   *
+   * @returns { Observable<any> } an observable with the response
+   */
+  public deleteCoupon(coupon: number): Observable<any> {
+    return this.httpClient.delete(`${this.apiURL}/productos/cupones/${coupon}`,{
+    });
   }
 
 }

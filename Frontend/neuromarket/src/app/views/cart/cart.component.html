@@ -38,7 +38,7 @@
               <td *ngIf="item.discount === 0">$ {{item.unitcost * item.cantidad}}</td>
               <td *ngIf="item.discount != 0"> $
                 {{ (item.unitcost - ((item.discount/100) * item.unitcost)) * item.cantidad}}</td>
-              <td><a class="btn-floating btn red" (click)="removeItem(i)"><i class="material-icons">delete</i></a></td>
+              <td><a class="btn-floating btn red" (click)="removeItem(i)"><i class="material-icons">remove_shopping_cart</i></a></td>
             </tr>
           </tbody>
         </table>
