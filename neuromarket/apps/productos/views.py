@@ -49,14 +49,38 @@ class Listproductos(APIView):
     def put(self,request):
         data = request.data
         try:
-            subcategoria = SubCategoria.objects.get(id= data['subcategoria'])
+            
             producto = Producto.objects.get(id = data["id"])
-            producto.nombre = data['nombre']
-            producto.descripcion = data['descripcion']
-            producto.stock = data['stock']
-            producto.condicion = data['condicion']
-            producto.costo = data['costo']
-            producto.subcategoria = subcategoria
+            subcategoria = request.data.get('subcategoria',None)
+            nombre = request.data.get('nombre',None)
+            descripcion = request.data.get('descripcion',None)
+            stock = request.data.get('stock',None)
+            descuento = request.data.get('descuento',None)
+            condicion = request.data.get('condicion',None)
+            costo = request.data.get('costo',None)
+            
+            if(nombre!=None):
+                producto.nombre = nombre
+            
+            if(descripcion!=None):
+                producto.descripcion = descripcion
+            
+            if(stock!=None):
+                producto.stock = stock
+            
+            if(condicion!=None):
+                producto.condicion = condicion
+            
+            if(costo!=None):
+                producto.costo = costo
+            
+            if(descuento!=None):
+                producto.descuento = descuento
+            
+            if(subcategoria!=None):
+                subcategoria = SubCategoria.objects.get(id=subcategoria)
+                producto.subcategoria = subcategoria
+                
             producto.save()
 
             return Response("Actualizado exitosamente", status=200)
@@ -186,14 +210,7 @@ class CuponProductoView(APIView):
         except:
             return Response("Error Datos",status=404)
 
-    def delete(self,request):
-        try:
-            data = request.data
-            cupon = CuponProducto.objects.filter(id=data['id'])
-            cupon.delete()
-            return Response("Eliminado correctamente",status=200)
-        except:
-            return Response("Error Inesperado",status=501)
+    
 
         
 
@@ -209,7 +226,7 @@ class DelProducto(APIView):
             return Response("La Producto no exite",status=400)
 
 
-class Validarcupon(APIView):
+class ValidarCupon(APIView):
     def get(self,request,pk):
         try:
             cupon = CuponProducto.objects.get(codigo=pk)
@@ -217,3 +234,14 @@ class Validarcupon(APIView):
         except CuponProducto.DoesNotExist:
             return JsonResponse({'descuento':'El producto no posee descuento'})
  
+class DelCupon(APIView):
+
+    def delete(self,request,pk):
+        try:
+            cupon = CuponProducto.objects.get(codigo=pk)
+            cupon.delete()
+            return Response("Eliminado exitosamente")
+        except CuponProducto.DoesNotExist:
+            return Response("El cupon no exite")
+
+
