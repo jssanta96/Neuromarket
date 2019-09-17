@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import swal from 'sweetalert2';
 
 import { AuthService } from '../../services/auth.service'
 import { StoreService } from '../../services/store.service'
@@ -14,6 +15,7 @@ export class CartComponent implements OnInit {
 
   cartList = [];
   storeState;
+  couponNumber;
 
   constructor(
     public router: Router,
@@ -56,17 +58,47 @@ export class CartComponent implements OnInit {
   }
 
   validateLogin() {
-    if (this.cartList == null || (this.authService.isLoggedIn() && this.cartList.length === 0)){
+    if (this.cartList == null || (this.authService.isLoggedIn() && this.cartList.length === 0)) {
       this.router.navigate(['/product-list']);
     }
     else if (this.authService.isLoggedIn() && this.cartList.length !== 0 && this.storeState) {
       this.router.navigate(['/payment']);
     }
-    else if(this.authService.isLoggedIn() && !this.storeState){
+    else if (this.authService.isLoggedIn() && !this.storeState) {
       this.router.navigate(['/store']);
     }
-    else if(!this.authService.isLoggedIn()){
+    else if (!this.authService.isLoggedIn()) {
       this.router.navigate(['/login']);
+    }
+  }
+
+  validateCoupon() {
+    console.log(this.cartList.length)
+    for (var i = 0; i < this.cartList.length; i++) {
+      if (this.cartList[i].coupon) {
+        if (this.cartList[i].coupon.codigo == this.couponNumber) {
+          this.cartList[i].unitcost = this.cartList[i].unitcost - ((this.cartList[i].coupon.descuento / 100) * this.cartList[i].unitcost)
+          swal.fire({
+            type: 'success',
+            title: 'Cupon Valido',
+            text: `Un cupon ha sido aplicado correctamente al producto ${this.cartList[i].name}`,
+          })
+          delete this.cartList[i].coupon
+
+          var oldCart = JSON.parse(localStorage.getItem('cart'))
+          oldCart.splice(i, 1);
+          oldCart.push(this.cartList[i])
+          console.log(oldCart)
+          localStorage.setItem('cart', JSON.stringify(oldCart));
+        }
+      }
+      else {
+        swal.fire({
+          type: 'error',
+          title: 'Cupon Invalido',
+          text: `Un cupon ${this.couponNumber} no existe o ya ha sido utilizado`,
+        })
+      }
     }
   }
 

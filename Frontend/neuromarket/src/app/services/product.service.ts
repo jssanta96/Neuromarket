@@ -97,6 +97,7 @@ export class ProductService {
   public generateCoupon(product: number, discount: number): Observable<any> {
     return this.httpClient.post(`${this.apiURL}/productos/cupones`,{
       idproducto: product,
+      cantidad: 1,
       descuento: discount
     });
   }
@@ -112,7 +113,7 @@ export class ProductService {
   }
   
   /**
-   * generate a coupon for a product
+   * Register a product
    *
    * @returns { Observable<any> } an observable with the response
    */

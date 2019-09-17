@@ -1,7 +1,7 @@
 //Dependencies
 import { Component, OnInit } from '@angular/core';
 import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
-import swal from'sweetalert2';
+import swal from 'sweetalert2';
 
 // Services
 import { ProductService } from '../../services/product.service';
@@ -17,6 +17,8 @@ export class StoreComponent implements OnInit {
   productList;
   storeState;
   userData;
+  productID;
+  couponPercentage;
 
   constructor(
     private productService: ProductService,
@@ -88,6 +90,31 @@ export class StoreComponent implements OnInit {
       },
       error => {
         console.log(error);
+      }
+    );
+  }
+
+  setID(id) {
+    this.productID = id;
+  }
+
+  setCoupon() {
+    this.productService.generateCoupon(this.productID, this.couponPercentage).subscribe(
+      data => {
+        swal.fire({
+          type: 'success',
+          title: 'Cupon creado exitosamente',
+        })
+        this.getMyProducts();
+        var elems = document.querySelectorAll('.modal');
+        var instances = M.Modal.init(elems);
+        instances.close()
+      },
+      error => {
+        swal.fire({
+          type: 'error',
+          title: 'Cupon creado exitosamente',
+        })
       }
     );
   }

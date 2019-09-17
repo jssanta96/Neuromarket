@@ -46,9 +46,9 @@
     </div>
     <div class="row container">
       <div class="input-field right">
-        <input id="cupon" type="text" class="validate">
+        <input [(ngModel)]="couponNumber" name="couponNumber" id="cupon" type="number" class="validate">
         <label for="cupon">Cupon de descuento</label>
-        <a class="btn right blue darken-1 cart-buttons">Aplicar cupón</a>
+        <a class="btn right blue darken-1 cart-buttons" (click)="validateCoupon()">Aplicar cupón</a>
       </div>
     </div>
     <div class="row container center-align">

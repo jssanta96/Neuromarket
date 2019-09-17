@@ -106,6 +106,7 @@ export class ProductDetailComponent implements OnInit {
   cart(){
     var newItem = {
       id: this.productDetail.id,
+      coupon: this.productDetail.CuponProducto[0],
       imagen: this.productDetail.ImagenProducto[0].imagen,
       name: this.productDetail.nombre,
       unitcost: this.productDetail.costo,
@@ -121,13 +122,6 @@ export class ProductDetailComponent implements OnInit {
     } else {
       localStorage.setItem('cart', JSON.stringify([newItem]));
     }
-
-    //console.log(JSON.parse(localStorage.getItem('cart')))
-
-    //console.log(localStorage.getItem('user'))
-    //localStorage.setItem('cart', this.productID.toString());
-    //const user = JSON.parse(localStorage.getItem('user'));
-
 
   }
 }
