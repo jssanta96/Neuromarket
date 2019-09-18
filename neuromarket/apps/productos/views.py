@@ -238,7 +238,7 @@ class DelCupon(APIView):
 
     def delete(self,request,pk):
         try:
-            cupon = CuponProducto.objects.filter(codigo=pk)
+            cupon = CuponProducto.objects.filter(id=pk)
             cupon.delete()
             return Response("Eliminado exitosamente")
         except CuponProducto.DoesNotExist:
