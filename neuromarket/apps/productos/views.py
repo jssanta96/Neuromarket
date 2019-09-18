@@ -14,7 +14,7 @@ import random
 
 class Listproductos(APIView):
     def get(self,request):
-        productos = Producto.objects.filter(estado=True)
+        productos = Producto.objects.filter(estado=True,stock__gt=0)
         productos_json = productoSerializer(productos,many=True,context={"request": request})
         return Response(productos_json.data)
 

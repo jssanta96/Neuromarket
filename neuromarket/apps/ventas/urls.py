@@ -11,6 +11,6 @@ urlpatterns = [
     path('<str:correo>', facturaView.as_view(), name="listar-factura"),
     path('miscompras/<int:pk>', misComprasView.as_view(), name="listar-mis-compras"),
     path('misventas/<str:correo>', misVentasView.as_view(), name="listar-mis-ventas"),
-    path('reporte/<str:correo>', ventasReportView.as_view(), name="reporte-ventas"),
+    path('reporte/<str:correo>/<str:finicial>/<str:ffinal>', ventasReportView.as_view(), name="reporte-ventas"),
     
 ]
