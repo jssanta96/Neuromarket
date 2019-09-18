@@ -80,10 +80,10 @@ class comprarView(APIView):
 
 
 class ventasReportView(APIView):
-    def get(self,request,correo):
+    def get(self,request,correo,finicial,ffinal):
         usuario = Usuario.objects.get(correo=correo)
         tienda = Tienda.objects.get(administrador = usuario.id)
         productos = Producto.objects.filter(tienda=tienda.id)
-        ventas = Venta.objects.values('fecha').annotate(cant=Count('fecha'))
+        ventas = Venta.objects.filter(fecha__range=(finicial,ffinal)).values('fecha').annotate(cant=Count('fecha'))
         ventas_json = reporteVentasSerializer(ventas,many=True,context={"request": request})
         return Response(ventas_json.data)
