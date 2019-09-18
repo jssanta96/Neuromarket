@@ -38,7 +38,6 @@ export class StoreComponent implements OnInit {
     this.productService.getProductsByUser(user.email).subscribe(
       data => {
         this.productList = data;
-        console.log(this.productList)
       },
       error => {
         console.log(error);

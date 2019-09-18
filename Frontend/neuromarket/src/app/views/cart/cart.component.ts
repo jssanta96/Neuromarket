@@ -46,7 +46,6 @@ export class CartComponent implements OnInit {
   }
 
   removeItem(itemNumber) {
-    console.log(this.cartList.length)
     if (this.cartList.length === 1) {
       localStorage.removeItem('cart');
       this.cartList = [];
@@ -73,7 +72,6 @@ export class CartComponent implements OnInit {
   }
 
   validateCoupon() {
-    console.log(this.cartList.length)
     for (var i = 0; i < this.cartList.length; i++) {
       if (this.cartList[i].coupon) {
         if (this.cartList[i].coupon.codigo == this.couponNumber) {
@@ -88,7 +86,6 @@ export class CartComponent implements OnInit {
           var oldCart = JSON.parse(localStorage.getItem('cart'))
           oldCart.splice(i, 1);
           oldCart.push(this.cartList[i])
-          console.log(oldCart)
           localStorage.setItem('cart', JSON.stringify(oldCart));
         }
       }

@@ -64,7 +64,6 @@ export class EditProductComponent implements OnInit {
     this.productService.getProductDetail(this.productID).subscribe(
       data => {
         this.productDetail = data;
-        console.log(this.productDetail)
         this.productID = this.productDetail.id;
         this.name = this.productDetail.nombre;
         this.description = this.productDetail.descripcion;
@@ -87,7 +86,6 @@ export class EditProductComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       data => {
         this.categoryList = data;
-        console.log(this.categoryList)
       },
       error => {
         console.log(error);

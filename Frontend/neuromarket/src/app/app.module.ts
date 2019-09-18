@@ -25,6 +25,7 @@ import { SaleListComponent } from './views/sale-list/sale-list.component';
 import { PaymentComponent } from './views/payment/payment.component';
 import { RegisterProductComponent } from './views/register-product/register-product.component';
 import { EditProductComponent } from './views/edit-product/edit-product.component';
+import { ReportComponent } from './views/report/report.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { EditProductComponent } from './views/edit-product/edit-product.componen
     PaymentComponent,
     RegisterProductComponent,
     EditProductComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,

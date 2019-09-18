@@ -50,7 +50,6 @@ export class SaleListComponent implements OnInit {
     this.saleService.getSales(this.userData.email).subscribe(
       data => {
         this.saleList = data;
-        console.log(this.saleList)
       },
       error => {
         console.log(error);

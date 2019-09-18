@@ -17,15 +17,15 @@
       </h5>
     </div>
     <div class="row container">
-      <div class="input-field col s12">
-        <input [(ngModel)]="name" name="name" id="name" placeholder="Nombre" type="text" class="validate">
+      <div class="col s12">
         <label for="name">Nombre</label>
+        <input [(ngModel)]="name" name="name" id="name" placeholder="Nombre" type="text" class="validate">
       </div>
     </div>
     <div class="row container">
-      <div class="input-field col s12">
-        <textarea [(ngModel)]="description" name="description" id="description"  placeholder="Descripcion" class="materialize-textarea"></textarea>
+      <div class="col s12">
         <label for="description">Descripcion</label>
+        <textarea [(ngModel)]="description" name="description" id="description"  placeholder="Descripcion" class="materialize-textarea"></textarea>
       </div>
     </div>
     <div class="row container">
@@ -43,24 +43,23 @@
       </div>
     </div>
     <div class="row container">
-      <div class="input-field col s4">
-        <input [(ngModel)]="quantity" name="quantity" id="stock" placeholder="Cantidad" type="number" class="validate">
+      <div class="col s4">
         <label for="stock">Cantidad</label>
+        <input [(ngModel)]="quantity" name="quantity" id="stock" placeholder="Cantidad" type="number" class="validate">
       </div>
-      <div class="input-field col s4">
-        <input [(ngModel)]="cost" name="cost" id="price" placeholder="Costo por unidad" type="number" class="validate">
+      <div class="col s4">
         <label for="price">Costo por unidad</label>
+        <input [(ngModel)]="cost" name="cost" id="price" placeholder="Costo por unidad" type="number" class="validate">
       </div>
-      <div class="input-field col s4">
+      <div class="col s4">
+        <label for="discount">Descuento</label>
         <input [(ngModel)]="discount" name="discount" id="price" placeholder="Descuento" type="number" class="validate" value="discount" min="0"
           max="100">
-        <label for="discount">Descuento</label>
       </div>
     </div>
     <div class="row container">
-      <div class="input-field col s6">
+      <div class="col s6">
         <label>Condicion</label>
-        <br>
         <select [(ngModel)]="condition" name="condition" class="browser-default">
           <option value="True"> Nuevo </option>
           <option value="False"> Usado </option>

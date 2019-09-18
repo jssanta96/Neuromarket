@@ -70,6 +70,9 @@
           </li>
         </ul>
       </div>
+      <div *ngIf="productList.length == 0" class="col s6">
+        <h4 class="center">No se econtraron productos que coincidan con la busqueda</h4>
+      </div>
       <div class="col s3">
         <h5>Filtrar productos</h5>
         <form action="#">

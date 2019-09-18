@@ -37,7 +37,6 @@ export class AuthService {
 
   // Returns true when user is looged in and email is verified
   isLoggedIn(): boolean {
-    console.log('is login '+ JSON.parse(localStorage.getItem('user')))
     const user = JSON.parse(localStorage.getItem('user'));
     return (user !== null) ? true : false;
   }
@@ -51,6 +50,14 @@ export class AuthService {
     return this.afAuth.auth.signInWithPopup(provider)
       .then((result) => {
         this.ngZone.run(() => {
+          this.registerUser(this.userData.displayName, this.userData.email).subscribe(
+            data => {
+              console.log(data)
+            },
+            error => {
+              console.log(error);
+            }
+          );
           this.router.navigate(['/']);
         })
         this.SetUserData(result.user.email);
@@ -61,7 +68,6 @@ export class AuthService {
 
   getUserData() {
     if (this.userData) {
-      console.log('si hay data')
       return JSON.parse(localStorage.getItem('user'));
     }
   }
@@ -88,10 +94,10 @@ provider in Firestore database using AngularFirestore + AngularFirestoreDocument
     })
   }
 
-  public getProductsFiltered(discount:boolean, state: boolean): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/productos/filtrar`,{
-      descuento: discount,
-      estado: state,
+  public registerUser(name:string, email: string): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/usuarios/`,{
+      nombre: name,
+      correo: email,
     });
   }
 }

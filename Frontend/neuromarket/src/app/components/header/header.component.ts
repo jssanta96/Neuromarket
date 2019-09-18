@@ -23,16 +23,13 @@ export class HeaderComponent implements OnInit {
 
   verifyLogin() {
     this.isLoggedIn = this.authService.isLoggedIn();
-    console.log('logeado? ' + this.isLoggedIn)
     if(this.isLoggedIn){
       this.getUserData();
     }
   }
 
   getUserData(){
-    console.log('entra')
     this.userData = JSON.parse(localStorage.getItem('user'))
-    console.log(this.userData)
   }
 
   initializeSideNav(){

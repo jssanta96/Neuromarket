@@ -45,7 +45,6 @@ export class RegisterProductComponent implements OnInit {
     this.categoryService.getCategories().subscribe(
       data => {
         this.categoryList = data;
-        console.log(this.categoryList)
       },
       error => {
         console.log(error);

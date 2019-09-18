@@ -77,7 +77,6 @@ export class ProductDetailComponent implements OnInit {
     this.productService.getProductDetail(this.productID).subscribe(
       data => {
         this.productDetail = data;
-        console.log(this.productDetail)
         this.fillStockArray();
         this.initialPrice = this.productDetail.costo;
       },
@@ -119,7 +118,6 @@ export class ProductDetailComponent implements OnInit {
     if(JSON.parse(localStorage.getItem('cart'))){
       var oldCart = JSON.parse(localStorage.getItem('cart'))
       oldCart.push(newItem)
-      console.log(oldCart)
       localStorage.setItem('cart', JSON.stringify(oldCart));
     } else {
       localStorage.setItem('cart', JSON.stringify([newItem]));

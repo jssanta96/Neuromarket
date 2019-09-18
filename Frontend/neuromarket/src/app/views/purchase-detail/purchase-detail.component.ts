@@ -55,7 +55,6 @@ export class PurchaseDetailComponent implements OnInit {
     this.purchaseService.getBillDetail(this.billID).subscribe(
       data => {
         this.billDetail = data;
-        console.log(this.billDetail)
       },
       error => {
         console.log(error);
