@@ -57,6 +57,10 @@ export class StoreComponent implements OnInit {
   deleteItem(itenID) {
     this.productService.deleteProduct(itenID).subscribe(
       data => {
+        swal.fire({
+          type: 'success',
+          title: 'Producto eliminado',
+        })
         this.getMyProducts();
       },
       error => {
