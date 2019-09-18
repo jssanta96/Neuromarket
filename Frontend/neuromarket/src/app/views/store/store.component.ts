@@ -57,7 +57,6 @@ export class StoreComponent implements OnInit {
   deleteItem(itenID) {
     this.productService.deleteProduct(itenID).subscribe(
       data => {
-        console.log(data)
         this.getMyProducts();
       },
       error => {
@@ -69,7 +68,6 @@ export class StoreComponent implements OnInit {
   getStoreState() {
     this.storeService.getStoreState(this.userData.email).subscribe(
       data => {
-        console.log(data)
         this.storeState = data;
         this.getMyProducts();
       },

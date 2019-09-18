@@ -1,5 +1,5 @@
 <app-layout>
-  <div *ngIf="storeState != undefined" main-content class="grey lighten-5">
+  <div main-content class="grey lighten-5">
     <div class="row">
       <nav>
         <div class="nav-wrapper">
@@ -73,7 +73,7 @@
         </div>
       </div>
     </div>
-    <ng-template #createStore>
+    <div *ngIf="storeState != undefined && !storeState">
       <div class="row container">
         <div class="col s12">
           <h3 style="text-align: center;">
@@ -91,7 +91,7 @@
           <img class="responsive-img" src="assets/images/ecommerce.png">
         </div>
       </div>
-    </ng-template>
+    </div>
 
     <div id="modalCoupon" class="modal">
       <div class="row modal-content">
