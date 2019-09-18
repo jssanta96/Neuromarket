@@ -18,6 +18,8 @@ urlpatterns = [
     path('destacados/', ListProductosDestacados.as_view(), name="listar-productosDestacados"),
     path('misproductos/<str:correo>', ListMisProductos.as_view(), name="listar-misproductos"),
     path('cupones',CuponProductoView.as_view(), name="crear-cupon"),
+    path('descuentos',DescuentoXVolumenView.as_view(), name="crear-descuento"),
+    path('deldescuento/<int:pk>',DelDescuentoXVolumen.as_view(), name="eliminar-descuento"),
     path('img/', ListImagenProducto.as_view(), name="listar-imgproductos"),
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,})
 ]

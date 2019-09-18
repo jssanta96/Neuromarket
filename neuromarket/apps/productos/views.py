@@ -6,7 +6,7 @@ from datetime import timedelta
 from neuromarket.apps.tiendas.models import Tienda
 from neuromarket.apps.categorias.models import Categoria,SubCategoria
 from neuromarket.apps.usuarios.models import Usuario
-from .models import Producto,ImagenProducto,CuponProducto
+from .models import Producto,ImagenProducto,CuponProducto,DescuentoXVolumen
 from .serializers import productoSerializer,imagenProductoSerializer
 from django.http import Http404,JsonResponse
 import random
@@ -245,3 +245,27 @@ class DelCupon(APIView):
             return Response("El cupon no exite")
 
 
+class DescuentoXVolumenView(APIView):
+    def post(self,request):
+        try:
+            data = request.data
+            producto = Producto.objects.get(id=data['idproducto'])
+            obj, created = DescuentoXVolumen.objects.get_or_create(
+                producto = producto,
+                cantidad = data['cantidad'],
+                porcentajeDescuento=data['descuento']
+            )
+
+            return Response("Creado Satisfactoriamente",status=201)
+        except:
+            return Response("Error Datos",status=404)
+
+class DelDescuentoXVolumen(APIView):
+
+    def delete(self,request,pk):
+        try:
+            descuento = DescuentoXVolumen.objects.filter(id=pk)
+            descuento.delete()
+            return Response("Eliminado exitosamente")
+        except CuponProducto.DoesNotExist:
+            return Response("El descuento no exite")
