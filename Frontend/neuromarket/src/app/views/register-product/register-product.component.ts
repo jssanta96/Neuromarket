@@ -54,7 +54,7 @@ export class RegisterProductComponent implements OnInit {
   }
 
   selectCategoryEvent(event) {
-    this.subCatList = (this.categoryList[event.target.value - 1]).subcategoria
+    this.subCatList = (this.categoryList[event.target.value - 2]).subcategoria
   }
 
   saveProduct() {
