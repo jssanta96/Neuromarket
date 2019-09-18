@@ -127,7 +127,7 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the response
    */
   public deleteCoupon(coupon: number): Observable<any> {
-    return this.httpClient.delete(`${this.apiURL}/productos/cupones/${coupon}`,{
+    return this.httpClient.delete(`${this.apiURL}/productos/delcupon/${coupon}`,{
     });
   }
 
