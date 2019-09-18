@@ -2,10 +2,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import * as M from 'node_modules/materialize-css/dist/js/materialize.js';
+import swal from 'sweetalert2';
 
 // Services
 import { ProductService } from '../../services/product.service';
-import { checkNoChangesInRootView } from '@angular/core/src/render3/instructions';
 
 /**
  * @author Diego Bello
@@ -48,6 +48,8 @@ export class ProductDetailComponent implements OnInit {
    */
   stockArray: Array<number>;
 
+  initialPrice
+
   /**
    * Creates an instance of ProductDetailComponent.
    *
@@ -63,17 +65,8 @@ export class ProductDetailComponent implements OnInit {
    */
   ngOnInit() {
     this.getProductDetail();
-    this.initializeMaterialboxed();
   }
   
-  /**
-   * Initialize the materialize materialboxed
-   */
-  initializeMaterialboxed(): void {
-    var elems = document.querySelectorAll('.materialboxed');
-    M.Materialbox.init(elems);
-  }
-
   /**
    * get the product detail.
    */
@@ -86,8 +79,7 @@ export class ProductDetailComponent implements OnInit {
         this.productDetail = data;
         console.log(this.productDetail)
         this.fillStockArray();
-        this.initializeMaterialboxed();
-
+        this.initialPrice = this.productDetail.costo;
       },
       error => {
         console.log(error);
@@ -101,6 +93,16 @@ export class ProductDetailComponent implements OnInit {
 
   selectChangeHandler(event){
     this.productQuantity = event.target.value
+    if(this.productQuantity == this.productDetail.DescuentoXVolumen[0].cantidad) {
+      this.productDetail.costo = this.productDetail.costo - ((this.productDetail.DescuentoXVolumen[0].porcentajeDescuento/100) * this.productDetail.costo)
+      swal.fire({
+        type: 'success',
+        title: 'Descuento por cantidad aplicado',
+      })
+    }
+    else{
+      this.productDetail.costo = this.initialPrice;
+    }
   }
 
   cart(){

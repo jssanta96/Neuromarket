@@ -1,6 +1,6 @@
 <app-layout>
-  <div main-content class="grey lighten-5">
-    <div class="row">
+  <div main-content class="grey lighten-5" *ngIf="productDetail != undefined">
+    <div class="row" >
       <nav>
         <div class="nav-wrapper">
           <div class="col s12 blue lighten-5">
@@ -29,9 +29,11 @@
           <h5 class="after-text" *ngIf="productDetail.descuento != 0">Ahora
             ${{productDetail.costo - ((productDetail.descuento/100) * productDetail.costo)}} </h5>
           <div class="row">
+                  <span style="font-weight: bold;">Recibe un {{productDetail.DescuentoXVolumen[0].porcentajeDescuento}}% de descuento comprando {{productDetail.DescuentoXVolumen[0].cantidad}} unidades</span>
             <div class="input-field">
               <div class="col s9">
                 <select class="browser-default" (change)="selectChangeHandler($event)">
+                  <option value="" disabled selected>Elija una cantidad</option>
                   <option *ngFor="let number of stockArray" value="{{number+1}}">{{number+1}}</option>
                 </select>
               </div>

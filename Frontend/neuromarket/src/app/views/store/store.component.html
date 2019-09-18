@@ -34,6 +34,7 @@
                 <th>Costo</th>
                 <th>Fecha de creacion</th>
                 <th>Cupon</th>
+                <th>Descuento x cantidad</th>
                 <th>Editar</th>
                 <th>Eliminar</th>
               </tr>
@@ -52,10 +53,18 @@
                 <td>{{product.fecha_creacion | date : 'short'}}</td>
                 <td *ngIf="product.CuponProducto.length === 0"> <a class="btn modal-trigger store-btn blue darken-1"
                     href="#modalCoupon" (click)="setID(product.id)">Generar</a></td>
-                <td *ngIf="product.CuponProducto.length !== 0">{{product.CuponProducto[0].codigo}}<a
-                    class="btn-floating btn red" (click)="deleteCoupon(product.CuponProducto[0].id)"><i
-                      class="material-icons">remove</i></a></td>
-                <td><a class="btn-floating btn blue"><i class="material-icons">edit</i></a></td>
+                <td *ngIf="product.CuponProducto.length !== 0">{{product.CuponProducto[0].descuento}}% -
+                  {{product.CuponProducto[0].codigo}}
+                  <br>
+                  <a class="btn-small btn red" (click)="deleteCoupon(product.CuponProducto[0].id)">Eliminar</a></td>
+                <td *ngIf="product.DescuentoXVolumen.length === 0"> <a class="btn modal-trigger store-btn blue darken-1"
+                    href="#modalDiscount" (click)="setID(product.id)">Generar</a></td>
+                <td *ngIf="product.DescuentoXVolumen.length !== 0">{{product.DescuentoXVolumen[0].porcentajeDescuento}}% -
+                  {{product.DescuentoXVolumen[0].cantidad}}
+                  <br>
+                  <a class="btn-small btn red" (click)="deleteDiscount(product.DescuentoXVolumen[0].id)">Eliminar</a></td>
+                <td><a routerLink="/edit-product/{{product.id}}" class="btn-floating btn blue"><i
+                      class="material-icons">edit</i></a></td>
                 <td><a class="btn-floating btn red" (click)="deleteItem(product.id)"><i
                       class="material-icons">delete</i></a></td>
               </tr>
@@ -96,7 +105,26 @@
           <a class="btn-large store-btn blue darken-1 right" (click)="setCoupon()">crear</a>
         </div>
       </div>
-
     </div>
+
+    <div id="modalDiscount" class="modal">
+      <div class="row modal-content">
+        <h4 style="margin-bottom: 50px;">Generar cupon</h4>
+        <div class="input-field col s4">
+          <input [(ngModel)]="discountPercentage" name="discountPercentage" id="discountPercentage" type="number" class="validate"
+            min="1" max="99">
+          <label for="discountPercentage">Porcentaje de descuento</label>
+        </div>
+        <div class="input-field col s4">
+          <input [(ngModel)]="discountQuantity" name="discountQuantity" id="discountQuantity" type="number" class="validate"
+            min="1" max="99">
+          <label for="discountQuantity">Cantidad para descuento</label>
+        </div>
+        <div class="col s4">
+          <a class="btn-large store-btn blue darken-1 right" (click)="setDiscount()">crear</a>
+        </div>
+      </div>
+    </div>
+
   </div>
 </app-layout>

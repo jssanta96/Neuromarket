@@ -51,8 +51,8 @@ export class ProductService {
    *
    * @returns { Observable<any> } an observable with the produc list filtered.
    */
-  public getProductsFiltered(discount:boolean, state: boolean): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/productos/filtrar`,{
+  public getProductsFiltered(discount: boolean, state: boolean): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/productos/filtrar`, {
       descuento: discount,
       estado: state,
     });
@@ -64,7 +64,7 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the produc list by category.
    */
   public getProductsByCategory(category: string): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/categorias/filtrar`,{
+    return this.httpClient.post(`${this.apiURL}/categorias/filtrar`, {
       campo: category
     });
   }
@@ -75,7 +75,7 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the produc list by name.
    */
   public getProductsByName(name: string): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/productos/busqueda`,{
+    return this.httpClient.post(`${this.apiURL}/productos/busqueda`, {
       campo: name
     });
   }
@@ -95,9 +95,22 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the response
    */
   public generateCoupon(product: number, discount: number): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/productos/cupones`,{
+    return this.httpClient.post(`${this.apiURL}/productos/cupones`, {
       idproducto: product,
       cantidad: 1,
+      descuento: discount
+    });
+  }
+
+  /**
+   * generate a discount for a product
+   *
+   * @returns { Observable<any> } an observable with the response
+   */
+  public generateDiscount(product: number, discount: number, quantity: number): Observable<any> {
+    return this.httpClient.post(`${this.apiURL}/productos/descuentos`, {
+      idproducto: product,
+      cantidad: quantity,
       descuento: discount
     });
   }
@@ -108,17 +121,17 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the response
    */
   public deleteProduct(product: number): Observable<any> {
-    return this.httpClient.delete(`${this.apiURL}/productos/del/${product}`,{
+    return this.httpClient.delete(`${this.apiURL}/productos/del/${product}`, {
     });
   }
-  
+
   /**
    * Register a product
    *
    * @returns { Observable<any> } an observable with the response
    */
   public registerProduct(formdata: any): Observable<any> {
-    return this.httpClient.post(`${this.apiURL}/productos/`,formdata);
+    return this.httpClient.post(`${this.apiURL}/productos/`, formdata);
   }
 
   /**
@@ -127,7 +140,35 @@ export class ProductService {
    * @returns { Observable<any> } an observable with the response
    */
   public deleteCoupon(coupon: number): Observable<any> {
-    return this.httpClient.delete(`${this.apiURL}/productos/delcupon/${coupon}`,{
+    return this.httpClient.delete(`${this.apiURL}/productos/delcupon/${coupon}`, {
+    });
+  }
+
+  /**
+   * delete a discount for a product
+   *
+   * @returns { Observable<any> } an observable with the response
+   */
+  public deleteDiscount(discount: number): Observable<any> {
+    return this.httpClient.delete(`${this.apiURL}/productos/deldescuento/${discount}`, {
+    });
+  }
+
+  /**
+   * Edit a product
+   *
+   * @returns { Observable<any> } an observable with the response
+   */
+  public editProduct(productID: number, name: string, description: string, subCat: number, quantity: number, cost: number, discount: number, condition: string): Observable<any> {
+    return this.httpClient.put(`${this.apiURL}/productos/`, {
+      id: productID,
+      nombre: name,
+      descripcion: description,
+      subcategoria: subCat,
+      stock: quantity,
+      costo: cost,
+      descuento: discount,
+      condicion: condition,
     });
   }
 

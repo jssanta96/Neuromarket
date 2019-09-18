@@ -24,6 +24,7 @@ import { PurchaseDetailComponent } from './views/purchase-detail/purchase-detail
 import { SaleListComponent } from './views/sale-list/sale-list.component';
 import { PaymentComponent } from './views/payment/payment.component';
 import { RegisterProductComponent } from './views/register-product/register-product.component';
+import { EditProductComponent } from './views/edit-product/edit-product.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { RegisterProductComponent } from './views/register-product/register-prod
     SaleListComponent,
     PaymentComponent,
     RegisterProductComponent,
+    EditProductComponent,
   ],
   imports: [
     BrowserModule,
