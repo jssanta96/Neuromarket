@@ -1,0 +1,45 @@
+<app-layout>
+  <div main-content class="grey lighten-5">
+    <div class="row">
+      <nav>
+        <div class="nav-wrapper">
+          <div class="col s12 blue lighten-5">
+            <a class="breadcrumb black-text">Perfil</a>
+            <a class="breadcrumb black-text">Ventas</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row container">
+      <h5 class="center">
+        Lista de ventas realizadas
+      </h5>
+    </div>
+    <div class="row container">
+      <div class="col s12">
+        <table class="striped highlight centered">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio unitario</th>
+              <th>Precio total</th>
+              <th>Fecha de venta</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sale of saleList">
+              <td><img class="responsive-img" width="100" src="{{sale.producto.ImagenProducto[0].imagen}}"></td>
+              <td>{{sale.producto.nombre}}</td>
+              <td>{{sale.cantidad}}</td>
+              <td>{{sale.precio}}</td>
+              <td>{{sale.total}}</td>
+              <td>{{sale.fecha | date : 'short'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</app-layout>

@@ -25,7 +25,7 @@ SECRET_KEY = 'xvtu9982_g!#8blydrt(j))d@_*+iyt=g^cj*_%%6nmbu=6a)t'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 CORS_ORIGIN_WHITELIST = (
    
@@ -41,7 +41,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'neuromarket.api',
+    'neuromarket.apps.categorias',
+    'neuromarket.apps.productos',
+    'neuromarket.apps.usuarios',
+    'neuromarket.apps.ventas',
+    'neuromarket.apps.tiendas',
     'corsheaders',
 
 ]
@@ -63,7 +69,7 @@ ROOT_URLCONF = 'neuromarket.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,10 +91,10 @@ WSGI_APPLICATION = 'neuromarket.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'neuromarket',
-        'USER': 'jsanta',
-        'PASSWORD': 'losmejores123',
-        'HOST': 'localhost',
+        'NAME': 'dd4d1l2ublejoe',
+        'USER': 'vrmvfnxvytohlv',
+        'PASSWORD': '989264aeba602d5744d79381a67797bf3979501c4c7bc689abb245d60a14a3e3',
+        'HOST': 'ec2-23-21-156-171.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
@@ -116,9 +122,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "es-es"
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Bogota'
 
 USE_I18N = True
 
@@ -131,3 +137,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR,'static'),
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = '/media/'

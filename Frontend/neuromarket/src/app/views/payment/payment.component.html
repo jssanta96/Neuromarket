@@ -1,0 +1,92 @@
+<app-layout>
+  <div main-content class="grey lighten-5">
+    <div class="row">
+      <nav>
+        <div class="nav-wrapper">
+          <div class="col s12 blue lighten-5">
+            <a class="breadcrumb black-text">Carrito</a>
+            <a class="breadcrumb black-text">Finalizar compra</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row container">
+      <h5 class="center">
+        Formulario de compra
+        <i class="material-icons">attach_money</i>
+      </h5>
+    </div>
+    <div class="row container">
+      <h6 class="">
+        Metodo de pago
+        <i class="material-icons">credit_card</i>
+      </h6>
+      <div class="col s6">
+        <p>
+          <label>
+            <input name="group1" type="radio" checked />
+            <span>Tarjeta debito</span>
+          </label>
+        </p>
+      </div>
+      <div class="col s6">
+        <p>
+          <label>
+            <input name="group1" type="radio" />
+            <span>Tarjeta crédito</span>
+          </label>
+        </p>
+      </div>
+    </div>
+    <div class="divider container"></div>
+    <div class="row container">
+      <h6 class="">
+        Informacion de tarjeta
+        <i class="material-icons">info_outline</i>
+      </h6>
+      <div class="col s6">
+        <div class="input-field">
+          <input id="card_number" type="number" class="validate">
+          <label for="card_number">Número de tarjeta</label>
+        </div>
+      </div>
+    </div>
+    <div class="row container">
+      <div class="col s6" style="padding-top: 15px;">
+        <label for="card_date">Fecha de vencimiento</label>
+        <br>
+        <input id="card_date" type="month" class="validate">
+      </div>
+      <div class="col s6">
+        <div class="input-field">
+          <input id="card_code" type="number" class="validate">
+          <label for="card_code">Codigo de seguridad</label>
+        </div>
+      </div>
+    </div>
+    <div class="divider container"></div>
+    <div class="row container">
+      <h6 class="">
+        Informacion de comprador
+        <i class="material-icons">face</i>
+      </h6>
+    </div>
+    <div class="row container">
+      <div class="input-field col s4">
+        <input id="name" type="text" class="validate">
+        <label for="name">Nombre</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="cellphone" type="number" class="validate">
+        <label for="cellphone">Celular</label>
+      </div>
+      <div class="input-field col s4">
+        <input id="email" type="text" class="validate">
+        <label for="email">Correo electronico</label>
+      </div>
+    </div>
+    <div class="row container center-align">
+      <a class="btn-large blue darken-1 buy" (click)="registerSale()">Comprar</a>
+    </div>
+  </div>
+</app-layout>

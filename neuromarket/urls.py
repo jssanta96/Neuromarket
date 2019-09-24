@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url
+from django.conf import settings
+from django.views.static import serve
 from django.urls import path, include
 from rest_framework import routers
 from neuromarket.api import views
@@ -25,6 +27,12 @@ router.register(r'movies', views.MovieViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^',include(router.urls)),
-    path('api-auth',include('rest_framework.urls',namespace='rest_framework'))
+    path('productos/',include(('neuromarket.apps.productos.urls','productos'),namespace='productos')),
+    path('categorias/',include(('neuromarket.apps.categorias.urls','categorias'),namespace='categorias')),
+    path('compras/',include(('neuromarket.apps.ventas.urls','compras'),namespace='compras')),
+    path('usuarios/',include(('neuromarket.apps.usuarios.urls','usuarios'),namespace='usuarios')),
+    path('tienda/',include(('neuromarket.apps.tiendas.urls','tienda'),namespace='tienda')),
+    path('api-auth',include('rest_framework.urls',namespace='rest_framework')),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT,})
 
 ]

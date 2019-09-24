@@ -1,0 +1,73 @@
+<app-layout>
+  <div main-content class="grey lighten-5">
+    <div class="row">
+      <nav>
+        <div class="nav-wrapper">
+          <div class="col s12 blue lighten-5">
+            <a class="breadcrumb black-text">Perfil</a>
+            <a class="breadcrumb black-text">Tienda</a>
+            <a class="breadcrumb black-text">Editar producto</a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <div class="row container">
+      <h5 class="center">
+        Formulario de Editar de producto
+      </h5>
+    </div>
+    <div class="row container">
+      <div class="col s12">
+        <label for="name">Nombre</label>
+        <input [(ngModel)]="name" name="name" id="name" placeholder="Nombre" type="text" class="validate">
+      </div>
+    </div>
+    <div class="row container">
+      <div class="col s12">
+        <label for="description">Descripcion</label>
+        <textarea [(ngModel)]="description" name="description" id="description"  placeholder="Descripcion" class="materialize-textarea"></textarea>
+      </div>
+    </div>
+    <div class="row container">
+      <div class="col s6">
+        <label>Categoría</label>
+        <select [(ngModel)]="cat" name="cat" class="browser-default" (change)="selectCategoryEvent($event)">
+          <option *ngFor="let category of categoryList" value="{{category.id}}">{{category.nombre}}</option>
+        </select>
+      </div>
+      <div class="col s6">
+        <label>Sub-Categoría</label>
+        <select [(ngModel)]="subCat" name="subCat" class="browser-default">
+          <option *ngFor="let subCat of subCatList" value="{{subCat.id}}">{{subCat.nombre}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="row container">
+      <div class="col s4">
+        <label for="stock">Cantidad</label>
+        <input [(ngModel)]="quantity" name="quantity" id="stock" placeholder="Cantidad" type="number" class="validate">
+      </div>
+      <div class="col s4">
+        <label for="price">Costo por unidad</label>
+        <input [(ngModel)]="cost" name="cost" id="price" placeholder="Costo por unidad" type="number" class="validate">
+      </div>
+      <div class="col s4">
+        <label for="discount">Descuento</label>
+        <input [(ngModel)]="discount" name="discount" id="price" placeholder="Descuento" type="number" class="validate" value="discount" min="0"
+          max="100">
+      </div>
+    </div>
+    <div class="row container">
+      <div class="col s6">
+        <label>Condicion</label>
+        <select [(ngModel)]="condition" name="condition" class="browser-default">
+          <option value="True"> Nuevo </option>
+          <option value="False"> Usado </option>
+        </select>
+      </div>
+    </div>
+    <div class="row container center-align">
+      <a class="btn-large blue darken-1 create" (click)="editProduct()">Editar producto</a>
+    </div>
+  </div>
+</app-layout>

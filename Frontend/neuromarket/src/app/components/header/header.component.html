@@ -1,0 +1,50 @@
+<nav>
+  <div class="nav-wrapper blue lighten-1">
+    <div class="row">
+      <div class="col s12">
+        <a *ngIf="isLoggedIn; else loggedOut" href="#" data-target="profile-info"
+          class="nav-link right sidenav-trigger show-on-medium-and-up">Mi Perfil</a>
+        <ng-template #loggedOut>
+          <a class="nav-link right" routerLink="/login" [routerLinkActive]="'activeLink'">Iniciar sesión</a>
+        </ng-template>
+        <a href="#" class="brand-logo hide-on-med-and-down">
+          <img class="responsive-img" id="logo-navbar" src="assets/images/neuromaker-logo.png" title="shop-logo"
+            alt="logo">
+        </a>
+        <ul id="nav-mobile" class="right">
+          <li>
+            <a class="nav-link" routerLink="/home" [routerLinkActive]="'activeLink'">Home</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/product-list" [routerLinkActive]="'activeLink'">Productos</a>
+          </li>
+          <li>
+            <a class="nav-link" routerLink="/cart" [routerLinkActive]="'activeLink'">Carrito</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<ul id="profile-info" class="sidenav">
+  <li>
+    <div *ngIf="isLoggedIn" class="user-view">
+      <div class="background">
+        <img src="assets/images/background.jpeg">
+      </div>
+      <a><img class="circle" src="{{userData.photoURL || assets/images/background.jpeg}}"></a>
+      <a><span class="white-text name">{{userData.displayName}}</span></a>
+      <a><span class="white-text email">{{userData.email}}</span></a>
+    </div>
+  </li>
+  <li><a routerLink="/store" class="sidenav-close"><i class="material-icons">store</i>Tienda</a></li>
+  <li><a routerLink="/purchase" class="sidenav-close"><i class="material-icons">shopping_cart</i>Compras</a></li>
+  <li><a routerLink="/sale" class="sidenav-close"><i class="material-icons">monetization_on</i>Ventas</a></li>
+  <li><a routerLink="/report" class="sidenav-close"><i class="material-icons">show_chart</i>Reportes</a></li>
+  <li>
+    <div class="divider"></div>
+  </li>
+  <li><a class="subheader">Opciones</a></li>
+  <li><a class="waves-effect sidenav-close" (click)="signOut()">Cerrar sesión</a></li>
+</ul>

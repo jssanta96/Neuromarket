@@ -1,0 +1,56 @@
+<app-layout>
+  <div main-content class="grey lighten-5" *ngIf="productDetail != undefined">
+    <div class="row" >
+      <nav>
+        <div class="nav-wrapper">
+          <div class="col s12 blue lighten-5">
+            <a class="breadcrumb black-text">Productos</a>
+            <a class="breadcrumb black-text">{{productDetail.subcategoria.categoria.nombre}}</a>
+            <a class="breadcrumb black-text">{{productDetail.subcategoria.nombre}}</a>
+          </div>
+        </div>
+      </nav>
+      <h3 class="center">{{productDetail.nombre}}</h3>
+    </div>
+    <div class="row container">
+      <div class="col s6">
+        <img class="responsive-img" width="400" src="{{productDetail.ImagenProducto[0].imagen}}">
+      </div>
+      <div class="col s6">
+        <div class="card-panel grey lighten-5 hoverable">
+          <span *ngIf="productDetail.descuento != 0" class="new badge green"
+            data-badge-caption="">{{productDetail.descuento}}% de descuento! </span>
+          <span *ngIf="productDetail.condicion">Producto nuevo</span>
+          <span *ngIf="!productDetail.condicion">Producto usado</span>
+          <strong>
+            <h6 class="before-text" *ngIf="productDetail.descuento != 0">Antes $<s>{{productDetail.costo}} </s></h6>
+          </strong>
+          <h5 *ngIf="productDetail.descuento === 0">$ {{productDetail.costo}} </h5>
+          <h5 class="after-text" *ngIf="productDetail.descuento != 0">Ahora
+            ${{productDetail.costo - ((productDetail.descuento/100) * productDetail.costo)}} </h5>
+          <div class="row">
+                  <span style="font-weight: bold;">Recibe un {{productDetail.DescuentoXVolumen[0].porcentajeDescuento}}% de descuento comprando {{productDetail.DescuentoXVolumen[0].cantidad}} unidades</span>
+            <div class="input-field">
+              <div class="col s9">
+                <select class="browser-default" (change)="selectChangeHandler($event)">
+                  <option value="" disabled selected>Elija una cantidad</option>
+                  <option *ngFor="let number of stockArray" value="{{number+1}}">{{number+1}}</option>
+                </select>
+              </div>
+              <div class="col s3">
+                <span>{{productDetail.stock}} unidades disponibles</span>
+              </div>
+            </div>
+          </div>
+          <a onclick="M.toast({html: 'Agregado al carrito'})" (click)="cart()" class="btn right blue darken-1 add-cart">Añadir al carrito</a>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin-bottom: 20px;">
+      <div class="col s6">
+        <h4>Descripción</h4>
+        <p style="text-align: justify">{{productDetail.descripcion}}</p>
+      </div>
+    </div>
+  </div>
+</app-layout>
